@@ -1,11 +1,11 @@
 public class Ingredients {
     String ingredients_name;
-    double calories;
+    double calories_per_gram;
     double weight;
 
     public Ingredients (String ingredients_name, double calories){
         this.ingredients_name = ingredients_name;
-        this.calories = calories;
+        this.calories_per_gram = calories_per_gram;
         this.weight = weight;
     }
 
@@ -13,8 +13,8 @@ public class Ingredients {
         return this.ingredients_name;
     }
 
-    public double getCalories(){
-        return this.calories;
+    public double getCaloriesPerGram(){
+        return this.calories_per_gram;
     }
 
     public double getWeight(){
