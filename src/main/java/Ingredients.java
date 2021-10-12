@@ -3,7 +3,7 @@ public class Ingredients {
     double calories_per_gram;
     double weight;
 
-    public Ingredients (String ingredients_name, double calories_per_gram){
+    public Ingredients (String ingredients_name, double calories_per_gram, double weight){
         this.ingredients_name = ingredients_name;
         this.calories_per_gram = calories_per_gram;
         this.weight = weight;
