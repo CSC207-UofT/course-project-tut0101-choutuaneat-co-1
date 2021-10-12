@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 public class Content{
     private ArrayList<Fried> fried_dishes;
     private ArrayList<Boiled>  boiled_dishes;
@@ -7,7 +8,7 @@ public class Content{
     private ArrayList<Grilled> grilled_dishes;
 
     /**
-     * Construct a Content database that stores dishes by category of fried, boiled, steamed, and grilled.
+     * Construct a Content database that stores dishes (by category of fried, boiled, steamed, and grilled).
      */
 
     public Content{
@@ -15,6 +16,25 @@ public class Content{
         this.boiled_dishes = new ArrayList<>();
         this.steamed_dishes = new ArrayList<>();
         this.grilled_dishes = new ArrayList<>();
+    }
+
+
+
+    /**
+     * Add dish to its respective cooking method category list.
+     * @param in_dish is an instance of Dish which could be of subclass Fried, Boiled, Steamed, or Grilled.
+     */
+    public void addDish(Dishes in_dish){
+        if (in_dish instanceof Fried){
+            this.fried_dishes.add((Fried) in_dish);
+        } else if (in_dish instanceof Boiled){
+            this.boiled_dishes.add((Boiled) in_dish);
+        } else if (in_dish instanceof Steamed){
+            this.steamed_dishes.add((Steamed) in_dish);
+        } else {
+            this.grilled_dishes.add((Grilled) in_dish);
+        }
+
     }
 
     /**
