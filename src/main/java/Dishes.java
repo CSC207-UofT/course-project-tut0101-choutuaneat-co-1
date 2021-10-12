@@ -39,10 +39,6 @@ public class Dishes {
         for (Ingredients each : input) {
             total_calories += each.get_Calories();
         }
-        if (in_dish instanceof Fry){}
-        if (in_dish instanceof Steam){}
-        if (in_dish instanceof Boil){}
-        if (in_dish instanceof Grilled){}
     }
 
 }
