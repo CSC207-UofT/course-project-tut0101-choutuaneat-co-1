@@ -37,6 +37,26 @@ public class favourites {
     }
 
     /**
+     * Return the current favourite list of dishes.
+     * @return The Current favourite list as an array.
+     */
+    public Dishes[] getFavouriteList(){
+        Dishes[] result = new Dishes[this.favourite_dishes.size()];
+        //Check if the current favourite_dishes list has nothing in it.
+        if (this.favourite_dishes.isEmpty()) {
+            result = new Dishes[0];
+            return result;
+        }
+        //Allocate every dish into the result array.
+        for (int i = 0; i < this.favourite_dishes.size(); i++) {
+            result[i] = this.favourite_dishes.get(i);
+        }
+            return result;
+
+    }
+
+
+    /**
      * Return the sorted favourite_dishes according to the
      * given sort method. The default sorting method is alphabetical.
      * @return A sorted dishes list
@@ -44,7 +64,6 @@ public class favourites {
     public Dishes[] getFavouriteRank(String method){
         Dishes [] result = {};
         return result;
-
     }
 
     /**
