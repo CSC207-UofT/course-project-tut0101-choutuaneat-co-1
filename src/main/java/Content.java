@@ -2,46 +2,46 @@ import java.util.ArrayList;
 
 
 public class Content{
-    private ArrayList<Fried> fried_dishes;
-    private ArrayList<Boiled>  boiled_dishes;
-    private ArrayList<Steamed> steamed_dishes;
-    private ArrayList<Grilled> grilled_dishes;
+    private ArrayList<Fried> friedDishes;
+    private ArrayList<Boiled>  boiledDishes;
+    private ArrayList<Steamed> steamedDishes;
+    private ArrayList<Grilled> grilledDishes;
 
     /**
      * Construct a Content database that stores dishes (by category of fried, boiled, steamed, and grilled).
      */
 
     public Content(){
-        this.fried_dishes = new ArrayList<>();
-        this.boiled_dishes = new ArrayList<>();
-        this.steamed_dishes = new ArrayList<>();
-        this.grilled_dishes = new ArrayList<>();
+        this.friedDishes = new ArrayList<>();
+        this.boiledDishes = new ArrayList<>();
+        this.steamedDishes = new ArrayList<>();
+        this.grilledDishes = new ArrayList<>();
     }
 
-
-
+    // 'add' methods
     /**
      * Add dish to its respective cooking method category list.
-     * @param in_dish is an Dish instance which could be of subclass Fried, Boiled, Steamed, or Grilled.
+     * @param in_dish is a Dish instance which could be of subclass Fried, Boiled, Steamed, or Grilled.
      */
     public <T extends Dishes> void addDish(T in_dish){
         if (in_dish instanceof Fried){
-            this.fried_dishes.add((Fried) in_dish);
+            this.friedDishes.add((Fried) in_dish);
         } else if (in_dish instanceof Boiled){
-            this.boiled_dishes.add((Boiled) in_dish);
+            this.boiledDishes.add((Boiled) in_dish);
         } else if (in_dish instanceof Steamed){
-            this.steamed_dishes.add((Steamed) in_dish);
+            this.steamedDishes.add((Steamed) in_dish);
         } else {
-            this.grilled_dishes.add((Grilled) in_dish);
+            this.grilledDishes.add((Grilled) in_dish);
         }
     }
 
+    // 'get' methods
     /**
      * Gets a list of all the existing fried dishes.
      * @return The list of existing Fried instances.
      */
     public ArrayList<Fried> getFried(){
-        return this.fried_dishes;
+        return this.friedDishes;
     }
 
     /**
@@ -49,7 +49,7 @@ public class Content{
      * @return The list of existing Boiled instances.
      */
     public ArrayList<Boiled> getBoiled(){
-        return this.boiled_dishes;
+        return this.boiledDishes;
     }
 
     /**
@@ -57,7 +57,7 @@ public class Content{
      * @return The list of existing Steamed instances.
      */
     public ArrayList<Steamed> getSteamed(){
-        return this.steamed_dishes;
+        return this.steamedDishes;
     }
 
     /**
@@ -65,6 +65,52 @@ public class Content{
      * @return The list of existing Grilled instances.
      */
     public ArrayList<Grilled> getGrilled(){
-        return this.grilled_dishes;
+        return this.grilledDishes;
+    }
+
+    // 'search' method
+    /**
+     * Returns a list of dish names with the same name as the dishName.
+     * @param dishName of the dish that is being searched for.
+     * @return The list dish names that match with dishName.
+     */
+    public ArrayList<String> searchDish(String dishName){
+        // TODO: To be improved and made more efficient after Tag class decisions are finalised.
+
+        ArrayList<String> results = new ArrayList<>();
+
+        //Search through friedDishes list for dishName match
+        for (Fried i : this.friedDishes){
+            String currName = i.get_dish_name();
+            if (currName.equals(dishName)){
+                results.add(currName);
+            }
+        }
+
+        //Search through boiledDishes list for dishName match
+        for (Boiled i : this.boiledDishes){
+            String currName = i.get_dish_name();
+            if (currName.equals(dishName)){
+                results.add(currName);
+            }
+        }
+
+        //Search through steamedDishes list for dishName match
+        for (Steamed i : this.steamedDishes){
+            String currName = i.get_dish_name();
+            if (currName.equals(dishName)){
+                results.add(currName);
+            }
+        }
+
+        //Search through grilledDishes list for dishName match
+        for (Grilled i : this.grilledDishes){
+            String currName = i.get_dish_name();
+            if (currName.equals(dishName)){
+                results.add(currName);
+            }
+        }
+
+        return results;
     }
 }
