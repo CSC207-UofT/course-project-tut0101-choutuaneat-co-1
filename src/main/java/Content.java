@@ -90,46 +90,51 @@ public class Content{
      * @param input is the keyword being searched for.
      * @return The list dish names that match with input.
      */
-    public ArrayList<Dishes> search(String input){
+    public Dishes[] search(String input){
         // TODO: Search functions to be improved after Tag class decisions are finalised.
 
-        ArrayList<Dishes> results = new ArrayList<>();
+        ArrayList<Dishes> cumulate = new ArrayList<>();
 
         //For cooking method searches:
         if (input.equals("fried")){
-            return getFried();
+            cumulate = getFried();
         } else if (input.equals("boiled")){
-            return getBoiled();
+            cumulate = getBoiled();
         } else if(input.equals("steamed")){
-            return getSteamed();
+            cumulate = getSteamed();
         } else if(input.equals("grilled")){
-            return getGrilled();
+            cumulate = getGrilled();
+        } else {
+            //For dish name searches:
+            //Search through friedDishes list for dishName match
+            for (Fried i : this.friedDishes){
+                if (i.get_dish_name().equals(input)){
+                    cumulate.add((Dishes) i);
+                }
+            }
+            //Search through boiledDishes list for dishName match
+            for (Boiled i : this.boiledDishes){
+                if (i.get_dish_name().equals(input)){
+                    cumulate.add((Dishes) i);
+                }
+            }
+            //Search through steamedDishes list for dishName match
+            for (Steamed i : this.steamedDishes){
+                if (i.get_dish_name().equals(input)){
+                    cumulate.add((Dishes) i);
+                }
+            }
+            //Search through grilledDishes list for dishName match
+            for (Grilled i : this.grilledDishes){
+                if (i.get_dish_name().equals(input)){
+                    cumulate.add((Dishes) i);
+                }
+            }
         }
 
-        //For dish name searches:
-        //Search through friedDishes list for dishName match
-        for (Fried i : this.friedDishes){
-            if (i.get_dish_name().equals(input)){
-                results.add((Dishes) i);
-            }
-        }
-        //Search through boiledDishes list for dishName match
-        for (Boiled i : this.boiledDishes){
-            if (i.get_dish_name().equals(input)){
-                results.add((Dishes) i);
-            }
-        }
-        //Search through steamedDishes list for dishName match
-        for (Steamed i : this.steamedDishes){
-            if (i.get_dish_name().equals(input)){
-                results.add((Dishes) i);
-            }
-        }
-        //Search through grilledDishes list for dishName match
-        for (Grilled i : this.grilledDishes){
-            if (i.get_dish_name().equals(input)){
-                results.add((Dishes) i);
-            }
+        Dishes[] results = new Dishes[cumulate.size()];
+        for (int i = 0; i < cumulate.size(); i++){
+            results[i] = cumulate.get(i);
         }
 
         return results;
