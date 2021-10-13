@@ -4,7 +4,7 @@ public class favourites {
 
     private ArrayList<Dishes> favourite_dishes;
 
-    public favourites(Contents database){
+    public favourites(Content database){
         this.favourite_dishes = new ArrayList<Dishes>();
     }
 
@@ -34,6 +34,14 @@ public class favourites {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Check if the given dish is in the favourite list or not.
+     * @return If the dish is in the list
+     */
+    public boolean containDish(Dishes dish){
+        return this.favourite_dishes.contains(dish);
     }
 
     /**
