@@ -40,74 +40,95 @@ public class Content{
      * Gets a list of all the existing fried dishes.
      * @return The list of existing Fried instances.
      */
-    public ArrayList<Fried> getFried(){
-        return this.friedDishes;
+    public ArrayList<Dishes> getFried(){
+        ArrayList<Dishes> result = new ArrayList<>();
+        for (Fried i : this.friedDishes){
+            result.add((Dishes) i);
+        }
+        return result;
     }
 
     /**
      * Gets a list of all the existing boiled dishes.
      * @return The list of existing Boiled instances.
      */
-    public ArrayList<Boiled> getBoiled(){
-        return this.boiledDishes;
+    public ArrayList<Dishes> getBoiled(){
+        ArrayList<Dishes> result = new ArrayList<>();
+        for (Boiled i : this.boiledDishes){
+            result.add((Dishes) i);
+        }
+        return result;
     }
 
     /**
      * Gets a list of all the existing steamed dishes.
      * @return The list of existing Steamed instances.
      */
-    public ArrayList<Steamed> getSteamed(){
-        return this.steamedDishes;
+    public ArrayList<Dishes> getSteamed(){
+        ArrayList<Dishes> result = new ArrayList<>();
+        for (Steamed i : this.steamedDishes){
+            result.add((Dishes) i);
+        }
+        return result;
     }
 
     /**
      * Gets a list of all the existing grilled dishes.
      * @return The list of existing Grilled instances.
      */
-    public ArrayList<Grilled> getGrilled(){
-        return this.grilledDishes;
+    public ArrayList<Dishes> getGrilled(){
+        ArrayList<Dishes> result = new ArrayList<>();
+        for (Grilled i : this.grilledDishes){
+            result.add((Dishes) i);
+        }
+        return result;
     }
 
     // 'search' method
     /**
-     * Returns a list of dish names with the same name as the dishName.
-     * @param dishName of the dish that is being searched for.
-     * @return The list dish names that match with dishName.
+     * Returns a list of dish names that matches with the input in terms of cooking method or dish name.
+     * @param input is the keyword being searched for.
+     * @return The list dish names that match with input.
      */
-    public ArrayList<String> searchDish(String dishName){
-        // TODO: To be improved and made more efficient after Tag class decisions are finalised.
+    public ArrayList<Dishes> search(String input){
+        // TODO: Search functions to be improved after Tag class decisions are finalised.
 
-        ArrayList<String> results = new ArrayList<>();
+        ArrayList<Dishes> results = new ArrayList<>();
 
+        //For cooking method searches:
+        if (input.equals("fried")){
+            return getFried();
+        } else if (input.equals("boiled")){
+            return getBoiled();
+        } else if(input.equals("steamed")){
+            return getSteamed();
+        } else if(input.equals("grilled")){
+            return getGrilled();
+        }
+
+        //For dish name searches:
         //Search through friedDishes list for dishName match
         for (Fried i : this.friedDishes){
-            String currName = i.get_dish_name();
-            if (currName.equals(dishName)){
-                results.add(currName);
+            if (i.get_dish_name().equals(input)){
+                results.add((Dishes) i);
             }
         }
-
         //Search through boiledDishes list for dishName match
         for (Boiled i : this.boiledDishes){
-            String currName = i.get_dish_name();
-            if (currName.equals(dishName)){
-                results.add(currName);
+            if (i.get_dish_name().equals(input)){
+                results.add((Dishes) i);
             }
         }
-
         //Search through steamedDishes list for dishName match
         for (Steamed i : this.steamedDishes){
-            String currName = i.get_dish_name();
-            if (currName.equals(dishName)){
-                results.add(currName);
+            if (i.get_dish_name().equals(input)){
+                results.add((Dishes) i);
             }
         }
-
         //Search through grilledDishes list for dishName match
         for (Grilled i : this.grilledDishes){
-            String currName = i.get_dish_name();
-            if (currName.equals(dishName)){
-                results.add(currName);
+            if (i.get_dish_name().equals(input)){
+                results.add((Dishes) i);
             }
         }
 
