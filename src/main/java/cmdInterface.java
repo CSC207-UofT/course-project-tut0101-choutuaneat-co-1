@@ -15,7 +15,7 @@ public class cmdInterface {
     public void execute() {
         System.out.print("Welcome to ChouTuan Eat Application! Enjoy it!\n");
         Content contentInstance = new Content();
-        favourites favouritesInstance = new favourites(contentInstance);
+        favourites favouritesInstance = new favourites();
         int selectedFunction = SEARCH_DISHES;
         while (selectedFunction != QUIT) {
             System.out.print("Please input the corresponding index of function you would like to try. You may: \n" +
