@@ -38,5 +38,4 @@ public class Dishes {
     public ArrayList<Ingredients> get_ingredients(){
         return this.ingredient_list;
     }
-
 }
