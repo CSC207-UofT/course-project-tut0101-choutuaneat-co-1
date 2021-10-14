@@ -4,7 +4,7 @@ public class favourites {
 
     private ArrayList<Dishes> favourite_dishes;
 
-    public favourites(Content database){
+    public favourites(){
         this.favourite_dishes = new ArrayList<Dishes>();
     }
 
@@ -62,50 +62,52 @@ public class favourites {
         }
             return result;
     }
+//
+//
+//    /**
+//     * Return the sorted favourite_dishes according to the
+//     * given sort method. The default sorting method is alphabetical.
+//     * @return A sorted dishes list
+//     */
+//    public Dishes[] getFavouriteRank(String method){
+//        Dishes [] result = {};
+//        return result;
+//    }
+//
+//    /**
+//     * Return all the names of the current favourite_dishes list.
+//     * @return A string array containing all the names in favourite_dishes.
+//     */
+//    public String[] getNames(){
+//        String [] result = new String[this.favourite_dishes.size()];
+//        //Check if the current favourite_dishes list has nothing in it.
+//        if (this.favourite_dishes.isEmpty()){
+//            result = new String[0];
+//            return result;
+//        }
+//        //Allocate every dishes' name into the result array.
+//        for(int i = 0; i < this.favourite_dishes.size(); i ++){
+//            result[i] = this.favourite_dishes.get(i).getName();
+//        }
+//        return result;
+//    }
+//
+//    /**
+//     * Return all the calories of the current favourite_dishes list.
+//     * @return A int array containing all the calories in favourite_dishes.
+//     */
+//    public int[] getCalories(){
+//        int [] result = new int[this.favourite_dishes.size()];
+//        //Check if the current favourite_dishes list has nothing in it.
+//        if (this.favourite_dishes.isEmpty()){
+//            result = new int[0];
+//            return result;
+//        }
+//        //Allocate every dishes' calories into the result array.
+//        for(int i = 0; i < this.favourite_dishes.size(); i ++){
+//            result[i] = this.favourite_dishes.get(i).getCalories();
+//        }
+//        return result;
+//    }
 
-    /**
-     * Return the sorted favourite_dishes according to the
-     * given sort method. The default sorting method is alphabetical.
-     * @return A sorted dishes list
-     */
-    public Dishes[] getFavouriteRank(String method){
-        Dishes [] result = {};
-        return result;
-    }
-
-    /**
-     * Return all the names of the current favourite_dishes list.
-     * @return A string array containing all the names in favourite_dishes.
-     */
-    public String[] getNames(){
-        String [] result = new String[this.favourite_dishes.size()];
-        //Check if the current favourite_dishes list has nothing in it.
-        if (this.favourite_dishes.isEmpty()){
-            result = new String[0];
-            return result;
-        }
-        //Allocate every dishes' name into the result array.
-        for(int i = 0; i < this.favourite_dishes.size(); i ++){
-            result[i] = this.favourite_dishes.get(i).getName();
-        }
-        return result;
-    }
-
-    /**
-     * Return all the calories of the current favourite_dishes list.
-     * @return A int array containing all the calories in favourite_dishes.
-     */
-    public int[] getCalories(){
-        int [] result = new int[this.favourite_dishes.size()];
-        //Check if the current favourite_dishes list has nothing in it.
-        if (this.favourite_dishes.isEmpty()){
-            result = new int[0];
-            return result;
-        }
-        //Allocate every dishes' calories into the result array.
-        for(int i = 0; i < this.favourite_dishes.size(); i ++){
-            result[i] = this.favourite_dishes.get(i).getCalories();
-        }
-        return result;
-    }
 }

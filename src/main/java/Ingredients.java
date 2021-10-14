@@ -13,8 +13,8 @@ public class Ingredients {
         return this.ingredients_name;
     }
 
-    public double getCaloriesPerGram(){
-        return this.calories_per_gram;
+    public double getCalories(){
+        return this.calories_per_gram * weight;
     }
 
     public double getWeight(){

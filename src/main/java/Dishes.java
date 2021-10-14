@@ -39,7 +39,7 @@ public class Dishes {
     public void cook(Dishes in_dish, ArrayList<Ingredients> input){
         double total_calories = 0;
         for (Ingredients each : input) {
-            total_calories += each.get_Calories();
+            total_calories += each.getCalories();
         }
     }
 
