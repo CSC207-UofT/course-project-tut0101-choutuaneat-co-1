@@ -14,6 +14,9 @@ public class Dishes {
         this.dish_name = name;
         this.instructions = in_instructions;
         this.total_calories = 0;
+        for (Ingredients each : in_Ingredients) {
+            total_calories += each.getCalories();
+        }
     }
 
 //    get_calories method:
@@ -35,13 +38,4 @@ public class Dishes {
     public ArrayList<Ingredients> get_ingredients(){
         return this.ingredient_list;
     }
-
-//    cook method:
-    public void cook(Dishes in_dish, ArrayList<Ingredients> input){
-//        double total_calories = 0;
-        for (Ingredients each : input) {
-            this.total_calories += each.get_Calories();
-        }
-    }
-
 }
