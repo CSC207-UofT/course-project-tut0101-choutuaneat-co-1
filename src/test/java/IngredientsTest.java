@@ -16,8 +16,8 @@ class IngredientsTest {
         assertEquals("Egg", ingredients.getIngredientsName());
     }
 
-    public void testGetCaloriesPerGram(){
-        assertEquals(10, ingredients.getCaloriesPerGram());
+    public void testGetCalories(){
+        assertEquals(1000, ingredients.getCalories());
     }
 
     public void testGetWeight(){
