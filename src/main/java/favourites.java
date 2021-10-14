@@ -38,7 +38,8 @@ public class favourites {
 
     /**
      * Check if the given dish is in the favourite list or not.
-     * @return If the dish is in the list
+     * @param dish The dish to be checked.
+     * @return If the dish is in the list.
      */
     public boolean containDish(Dishes dish){
         return this.favourite_dishes.contains(dish);
@@ -60,9 +61,7 @@ public class favourites {
             result[i] = this.favourite_dishes.get(i);
         }
             return result;
-
     }
-
 
     /**
      * Return the sorted favourite_dishes according to the
@@ -109,11 +108,4 @@ public class favourites {
         }
         return result;
     }
-
-
-
-
-
-
-
 }
