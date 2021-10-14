@@ -24,19 +24,18 @@ public class cmdInterface {
             try {
                 selectedFunction = sc.nextInt();
                 sc.nextLine();
+                if (selectedFunction == ADD_NEW_DISH) {
+                    addNewDish(contentInstance, sc);
+                } else if (selectedFunction == SEARCH_DISHES) {
+                    searchDishes(contentInstance, favouritesInstance, sc);
+                } else if (selectedFunction == MANAGE_FAVOURITE_DISHES) {
+                    manageFavouriteDishes(favouritesInstance, sc);
+                } else if(selectedFunction != QUIT){
+                    throw new Exception();
+                }
+                continueExecute = selectedFunction != QUIT;
             }
             catch (Exception e) {
-                System.out.print("Invalid input! Please try again!\n");
-                continue;
-            }
-            continueExecute = selectedFunction != QUIT;
-            if (selectedFunction == ADD_NEW_DISH) {
-                addNewDish(contentInstance, sc);
-            } else if (selectedFunction == SEARCH_DISHES) {
-                searchDishes(contentInstance, favouritesInstance, sc);
-            } else if (selectedFunction == MANAGE_FAVOURITE_DISHES) {
-                manageFavouriteDishes(favouritesInstance, sc);
-            } else {
                 System.out.print("Invalid input! Please try again!\n");
             }
         }
@@ -54,29 +53,78 @@ public class cmdInterface {
         while(continueAddDish) {
             System.out.print("Please input the name of dish you would like to add\n");
             String dishName = sc.nextLine();
-            System.out.print("Please input corresponding index of the dish's cooking method\n" +
-                    "1. Fried\n" +
-                    "2. Boiled\n" +
-                    "3. Steamed\n" +
-                    "4. Grilled\n");
-            int cookMethod = sc.nextInt();
-            sc.nextLine();
+            boolean reInput = true;
+            int cookMethod = CookMethods.FRIED;
+            while(reInput) {
+                System.out.print("Please input corresponding index of the dish's cooking method\n" +
+                        "1. Fried\n" +
+                        "2. Boiled\n" +
+                        "3. Steamed\n" +
+                        "4. Grilled\n");
+                sc = new Scanner(System.in);
+                try {
+                    cookMethod = sc.nextInt();
+                    sc.nextLine();
+                    if(cookMethod != CookMethods.FRIED && cookMethod != CookMethods.GRILLED
+                    && cookMethod != CookMethods.STEAMED && cookMethod != CookMethods.BOILED)
+                        throw new Exception();
+                    reInput = false;
+                }
+                catch (Exception e) {
+                    System.out.print("Invalid input! Please try again!\n");
+                }
+            }
             boolean continueAddIngredients = true;
             ArrayList<Ingredients> ingredient_list = new ArrayList<>();
             while (continueAddIngredients) {
                 System.out.print("Please input dish's ingredient with following format:\nName: ");
                 String ingredientName = sc.nextLine();
-                System.out.print("Weight(In grams): ");
-                float ingredientWeight = sc.nextFloat();
-                sc.nextLine();
-                System.out.print("Calories(per gram): ");
-                float ingredientCaloriesPerGram = sc.nextFloat();
-                sc.nextLine();
+                reInput = true;
+                float ingredientWeight = 0;
+                while(reInput) {
+                    System.out.print("Weight(In grams): ");
+                    sc = new Scanner(System.in);
+                    try {
+                        ingredientWeight = sc.nextFloat();
+                        sc.nextLine();
+                        if(ingredientWeight < 0)
+                            throw new Exception();
+                        reInput = false;
+                    }
+                    catch (Exception e) {
+                        System.out.print("Invalid input! Please try again!\n");
+                    }
+                }
+                reInput = true;
+                float ingredientCaloriesPerGram = 0;
+                while(reInput) {
+                    System.out.print("Calories(per gram): ");
+                    sc = new Scanner(System.in);
+                    try {
+                        ingredientCaloriesPerGram = sc.nextFloat();
+                        sc.nextLine();
+                        if(ingredientCaloriesPerGram < 0)
+                            throw new Exception();
+                        reInput = false;
+                    }
+                    catch (Exception e) {
+                        System.out.print("Invalid input! Please try again!\n");
+                    }
+                }
                 Ingredients newIngredient = new Ingredients(ingredientName, ingredientCaloriesPerGram, ingredientWeight);
                 ingredient_list.add(newIngredient);
                 //TODO: store newIngredient in content.
-                System.out.print("Add an ingredient successfully! Continue to add a new one?(Y/N)\n");
-                String continueChoice = sc.nextLine();
+                reInput = true;
+                String continueChoice = "Y";
+                while(reInput) {
+                    System.out.print("Add an ingredient successfully! Continue to add a new one?(Y/N)\n");
+                    continueChoice = sc.nextLine();
+                    if(continueChoice.equals("Y") || continueChoice.equals("N"))
+                        reInput = false;
+                    else {
+                        System.out.print("Invalid input! Please try again!\n");
+                    }
+                }
                 continueAddIngredients = continueChoice.equals("Y");
             }
             System.out.print("Please input the instruction for the dish\n");
@@ -94,8 +142,17 @@ public class cmdInterface {
                 newDish = new Dishes(dishName, ingredient_list, dishInstr);
             }
             contentInstance.addDish(newDish);
-            System.out.print("Add a dish successfully! Continue to add a new one?(Y/N)\n");
-            String continueChoice = sc.nextLine();
+            reInput = true;
+            String continueChoice = "Y";
+            while(reInput) {
+                System.out.print("Add a dish successfully! Continue to add a new one?(Y/N)\n");
+                continueChoice = sc.nextLine();
+                if(continueChoice.equals("Y") || continueChoice.equals("N"))
+                    reInput = false;
+                else {
+                    System.out.print("Invalid input! Please try again!\n");
+                }
+            }
             continueAddDish = continueChoice.equals("Y");
         }
 
@@ -139,11 +196,23 @@ public class cmdInterface {
      * @return the index of dish that user selected
      */
     private int selectDishtoCheck(favourites favouritesInstance, Scanner sc, Dishes[] dishList) {
-        int indexOfDish;
+        int indexOfDish = QUIT;
         showDistList(dishList);
-        System.out.print("Please input corresponding index of the dish to see details, input \"0\" to return\n");
-        indexOfDish = sc.nextInt();
-        sc.nextLine();
+        boolean reInput = true;
+        while(reInput) {
+            System.out.print("Please input corresponding index of the dish to see details, input \"0\" to return\n");
+            sc = new Scanner(System.in);
+            try {
+                indexOfDish = sc.nextInt();
+                sc.nextLine();
+                if(indexOfDish > dishList.length || indexOfDish < 0)
+                    throw new Exception();
+                reInput = false;
+            }
+            catch (Exception e) {
+                System.out.print("Invalid input! Please try again!\n");
+            }
+        }
         if (indexOfDish != QUIT)
             checkDish(dishList[indexOfDish - 1], favouritesInstance);
         return indexOfDish;
@@ -172,16 +241,28 @@ public class cmdInterface {
      */
     private void checkDish(Dishes dishInstance , favourites favouritesList) {
         boolean continueCheck = true;
-        viewDishDetails(dishInstance);
+        Scanner sc = new Scanner(System.in);
         while(continueCheck) {
-            System.out.print("Please input \"1\" to add to/drop from your favourite dish list, input \"0\" to return\n");
-            Scanner sc = new Scanner(System.in);
-            int functionIndex = sc.nextInt();
-            sc.nextLine();
+            viewDishDetails(dishInstance);
+            boolean reInput = true;
+            int functionIndex = QUIT;
+            while(reInput) {
+                System.out.print("Please input \"1\" to add to/drop from your favourite dish list, input \"0\" to return\n");
+                sc = new Scanner(System.in);
+                try {
+                    functionIndex = sc.nextInt();
+                    sc.nextLine();
+                    if(functionIndex != ADD_DELETE && functionIndex != QUIT)
+                        throw new Exception();
+                    reInput = false;
+                }
+                catch (Exception e) {
+                    System.out.print("Invalid input. Try again.\n");
+                    continue;
+                }
+            }
             continueCheck = (functionIndex != QUIT);
-            if(functionIndex != ADD_DELETE && functionIndex != QUIT)
-                System.out.print("Invalid input. Try again.\n");
-            else if (functionIndex == ADD_DELETE) {
+            if (functionIndex == ADD_DELETE) {
                 if(favouritesList.containDish(dishInstance)) {
                     favouritesList.removeFavourite(dishInstance);
                     System.out.print("Remove dish from favourite dish list successfully!\n");
