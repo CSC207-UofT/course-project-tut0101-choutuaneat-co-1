@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class cmdInterface {
-    private final int QUIT = 0;
-    private final int ADD_NEW_DISH = 1;
-    private final int SEARCH_DISHES = 2;
-    private final int MANAGE_FAVOURITE_DISHES = 3;
-    private final int ADD_DELETE = 1;
+    static final int QUIT = 0;
+    static final int ADD_NEW_DISH = 1;
+    static final int SEARCH_DISHES = 2;
+    static final int MANAGE_FAVOURITE_DISHES = 3;
+    static final int ADD_DELETE = 1;
 
     public void execute() {
         Content contentInstance = new Content();
