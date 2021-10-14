@@ -4,7 +4,7 @@ public class favourites {
 
     private ArrayList<Dishes> favourite_dishes;
 
-    public favourites(Contents database){
+    public favourites(Content database){
         this.favourite_dishes = new ArrayList<Dishes>();
     }
 
@@ -37,6 +37,15 @@ public class favourites {
     }
 
     /**
+     * Check if the given dish is in the favourite list or not.
+     * @param dish The dish to be checked.
+     * @return If the dish is in the list.
+     */
+    public boolean containDish(Dishes dish){
+        return this.favourite_dishes.contains(dish);
+    }
+
+    /**
      * Return the current favourite list of dishes.
      * @return The Current favourite list as an array.
      */
@@ -52,9 +61,7 @@ public class favourites {
             result[i] = this.favourite_dishes.get(i);
         }
             return result;
-
     }
-
 
     /**
      * Return the sorted favourite_dishes according to the
@@ -101,11 +108,4 @@ public class favourites {
         }
         return result;
     }
-
-
-
-
-
-
-
 }
