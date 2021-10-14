@@ -61,7 +61,6 @@ public class favourites {
             result[i] = this.favourite_dishes.get(i);
         }
             return result;
-
     }
 //
 //
@@ -110,11 +109,5 @@ public class favourites {
 //        }
 //        return result;
 //    }
-
-
-
-
-
-
 
 }
