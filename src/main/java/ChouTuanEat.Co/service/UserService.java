@@ -1,12 +1,12 @@
-package ChouTuanEat.co.demo.service;
+package ChouTuanEat.Co.service;
 
-import ChouTuanEat.co.demo.entity.User;
+import ChouTuanEat.Co.entity.User;
 import java.util.List;
 
 public interface UserService {
     List<User> findAll();
 
-    User getUserByUsername(String username);
+    public User getUserByUsername(String username);
 
     void saveOrUpdate(User user);
 

@@ -1,4 +1,4 @@
-package ChouTuanEat.co.demo.entity;
+package ChouTuanEat.Co.entity;
 
 import java.util.ArrayList;
 

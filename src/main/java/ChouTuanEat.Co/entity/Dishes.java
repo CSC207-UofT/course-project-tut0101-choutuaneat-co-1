@@ -1,6 +1,8 @@
-package ChouTuanEat.co.demo.entity;
+package ChouTuanEat.Co.entity;
 
 //import arraylist
+import ChouTuanEat.Co.entity.Ingredients;
+
 import java.util.ArrayList;
 
 public class Dishes {
