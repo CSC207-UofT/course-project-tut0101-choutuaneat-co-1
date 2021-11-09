@@ -1,9 +1,9 @@
-package ChouTuanEat.co.demo.entity;
+package ChouTuanEat.Co.entity;
 
-package ChouTuanEat.co.demo.entity;
+//package ChouTuanEat.co.demo.entity;
 
 import java.util.ArrayList;
-
+import ChouTuanEat.Co.entity.*;
 
 public class Content{
     private ArrayList<Fried> friedDishes;

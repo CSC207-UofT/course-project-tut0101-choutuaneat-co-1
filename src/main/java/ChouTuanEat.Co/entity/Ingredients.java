@@ -1,4 +1,4 @@
-package ChouTuanEat.co.demo.entity;
+package ChouTuanEat.Co.entity;
 
 public class Ingredients {
     String ingredients_name;
