@@ -2,8 +2,10 @@ package ChouTuanEat.Co.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "user")
 public class User {
 
     private String username;

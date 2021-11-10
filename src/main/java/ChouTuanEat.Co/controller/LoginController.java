@@ -37,6 +37,13 @@ public class LoginController {
             return "userInfoPage";
         }
 
+        if(client == null){
+            model.addAttribute("user", user);
+            model.addAttribute("message", "User not registered");
+
+            return "login";
+        }
+
         model.addAttribute("user", DUMMY_FORM_PLACEHOLDER_STUDENT);
         model.addAttribute("message", "Invalid Login!");
 
