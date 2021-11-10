@@ -28,13 +28,20 @@ public class LoginController {
     @PostMapping()
     public String login(@ModelAttribute(value="user") User user, Model model) {
 
-        User client = userService.getUserByUsername(user.getUsername());
+        User client = userService.getUserByUsername(user.getId());
 
         if (client != null && client.getPassword().equals(user.getPassword())) {
             model.addAttribute("user", user);
             model.addAttribute("message", "Welcome");
 
             return "userInfoPage";
+        }
+
+        if(client == null){
+            model.addAttribute("user", user);
+            model.addAttribute("message", "User not registered");
+
+            return "login";
         }
 
         model.addAttribute("user", DUMMY_FORM_PLACEHOLDER_STUDENT);
