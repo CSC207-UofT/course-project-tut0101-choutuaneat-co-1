@@ -1,0 +1,30 @@
+.form-login {
+    max-width: 400px;
+    padding: 20px;
+    margin: 0 auto;
+}
+.form-table {
+    width: 80%;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-login .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-btn {
+    width: 50%;
+    padding: 15px;
+    margin: 0 auto;
+    border: 1px solid #c0a16b;
+}
+
+.floated {
+    float:left;
+    margin-right:10px;
+}
