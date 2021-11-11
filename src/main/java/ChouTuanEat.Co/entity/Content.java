@@ -5,6 +5,9 @@ package ChouTuanEat.Co.entity;
 import java.util.ArrayList;
 import ChouTuanEat.Co.entity.*;
 
+import javax.persistence.Entity;
+
+
 public class Content{
     private ArrayList<Fried> friedDishes;
     private ArrayList<Boiled>  boiledDishes;

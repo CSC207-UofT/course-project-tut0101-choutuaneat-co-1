@@ -1,4 +1,4 @@
-package ChouTuanEat.Co.service.Impl;
+package ChouTuanEat.Co.service.impl;
 
 import ChouTuanEat.Co.entity.User;
 import ChouTuanEat.Co.repository.UserRepository;

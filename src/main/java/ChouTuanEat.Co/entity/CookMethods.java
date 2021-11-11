@@ -11,8 +11,8 @@ class CookMethods {
 class Fried extends Dishes {
 
     public Fried(String name, ArrayList<Ingredients> in_Ingredients, String in_instructions){
-        super(name, in_Ingredients, in_instructions);
-        this.total_calories = this.total_calories * 4;
+        super();
+        this.totalcalories = this.totalcalories * 4;
 
     }
 
@@ -25,7 +25,7 @@ class Fried extends Dishes {
 
 class Boiled extends Dishes {
     public Boiled(String name, ArrayList<Ingredients> in_Ingredients, String in_instructions){
-        super(name, in_Ingredients, in_instructions);
+        super();
     }
 
 //    @Override
@@ -37,8 +37,8 @@ class Boiled extends Dishes {
 
 class Steamed extends Dishes {
     public Steamed(String name, ArrayList<Ingredients> in_Ingredients, String in_instructions){
-        super(name, in_Ingredients, in_instructions);
-        this.total_calories = this.total_calories * 2;
+        super();
+        this.totalcalories = this.totalcalories * 2;
     }
 
 //    @Override
@@ -50,8 +50,8 @@ class Steamed extends Dishes {
 
 class Grilled extends Dishes {
     public Grilled(String name, ArrayList<Ingredients> in_Ingredients, String in_instructions){
-        super(name, in_Ingredients, in_instructions);
-        this.total_calories = this.total_calories * 3;
+        super();
+        this.totalcalories = this.totalcalories * 3;
     }
 
 //    @Override
