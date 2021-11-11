@@ -21,13 +21,13 @@ public class Dishes {
     private ArrayList<Ingredients> ingredientlist;
 
     @Column
-    double totalcalories;
+    private double totalcalories;
 
     @Column
     private String instructions;
 
     public String getDishName(){
-        return this.dishname;
+        return dishname;
     }
 
     public void setDishName(String dishname) {
@@ -35,7 +35,7 @@ public class Dishes {
     }
 
     public ArrayList<Ingredients> getIngredientsList(){
-        return this.ingredientlist;
+        return ingredientlist;
     }
 
     public void setIngredientlist(ArrayList<Ingredients> ingredientlist) {
@@ -43,14 +43,14 @@ public class Dishes {
     }
 
     public double getCalories() {
-        return this.totalcalories;
+        return totalcalories;
     }
     public void setCalories(Double total_calories) {
         this.totalcalories = totalcalories;
     }
 
     public String getInstructions(){
-        return this.instructions;
+        return instructions;
     }
     public void setInstructions(String instructions) {
         this.instructions = instructions;

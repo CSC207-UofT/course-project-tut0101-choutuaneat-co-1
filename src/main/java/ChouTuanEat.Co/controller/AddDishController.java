@@ -15,7 +15,6 @@ public class AddDishController {
 
     @Autowired
     private AddDishService addDishService;
-    private String Dishes;
 
     @GetMapping()
     public String getAddDishesPage(Model model){
@@ -25,7 +24,7 @@ public class AddDishController {
     }
 
     @PostMapping()
-    public String dish(@ModelAttribute(value="Dish") Dishes dishes, Model model) {
+    public String addNewDish(@ModelAttribute(value="Dish") Dishes dishes, Model model) {
 
         Dishes dish = AddDishService.getDishByDishName(Dishes.getDishName());
 
