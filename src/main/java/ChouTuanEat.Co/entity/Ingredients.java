@@ -1,6 +1,17 @@
 package ChouTuanEat.Co.entity;
 
+import javax.persistence.Entity;
+
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+
 public class Ingredients {
+
     String ingredients_name;
     double calories_per_gram;
     double weight;
@@ -11,14 +22,17 @@ public class Ingredients {
         this.weight = weight;
     }
 
+    @Id
     public String getIngredientsName() {
         return this.ingredients_name;
     }
 
+    @Column
     public double getCalories(){
         return this.calories_per_gram * weight;
     }
 
+    @Column
     public double getWeight(){
         return this.weight;
     }
