@@ -1,8 +1,12 @@
 package ChouTuanEat.Co.entity;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+
+@Component
 public class favourites {
 
     private ArrayList<Dishes> favourite_dishes;
