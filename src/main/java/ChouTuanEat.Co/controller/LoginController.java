@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("login")
 public class LoginController {
     private static User DUMMY_FORM_PLACEHOLDER_STUDENT = new User();
