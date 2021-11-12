@@ -28,7 +28,7 @@ public class RegisterController {
     @PostMapping()
     public String register(@ModelAttribute(value="user") User user, Model model){
 
-        User client = userService.getUserByUsername(user.getId());
+        User client = userService.getUserByUsername(user.getUsername());
 
         if(client == null){
 
