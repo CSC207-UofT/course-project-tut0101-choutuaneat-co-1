@@ -37,7 +37,6 @@ public class AddDishController {
         }
 
         model.addAttribute("Dish", DUMMY_FORM_PLACEHOLDER_DISHES);
-        model.addAttribute("message", "Username or password is wrong!");
 
         return "Add New Dish";
     }
