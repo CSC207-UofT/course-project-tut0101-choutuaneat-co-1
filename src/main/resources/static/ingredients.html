@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ingredients</title>
+</head>
+<body>
+<label for="ingredient_name">ingredient name: </label>
+<input id="ingredient_name" type="text" placeholder="ingredient name"><br>
+<label for="calories_per_gram">calories per gram: </label>
+<input id="calories_per_gram" type="number" placeholder="calories per gram"><br>
+<input type="button" value="add" id="add"><br>
+<span id="info1"></span>
+<br>
+<br>
+<br>
+<table style="display: none;" id="data" border="1">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Ingredient Name</td>
+        <td>Calories Per Gram</td>
+        <td>Delete</td>
+    </tr>
+    </thead>
+    <tbody id="item_content">
+
+    </tbody>
+</table>
+<span id="table_info" style="display: none">No Data</span><br>
+<span id="info2"></span>
+<script>
+    const items = document.getElementById("item_content");
+
+    function refreshTable(list) {
+        if (list.length !== 0) {
+            document.getElementById("data").style.display = "";
+            document.getElementById("table_info").style.display = "none";
+        }
+        if (list.length === 0) {
+            document.getElementById("data").style.display = "none";
+            document.getElementById("table_info").style.display = "";
+        }
+        for (let i = 0; i < list.length; i++) {
+            const item = list[i];
+            const trElement = document.createElement("tr");
+            trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["ingredientsName"]+"</td><td>"+
+                item["caloriesPerGram"]+"</td><td><a href='javascript:void(0)' myid='/ingredients/"+item["id"]+"'>delete</a></td>";
+            items.appendChild(trElement);
+        }
+        const allAElement = document.getElementsByTagName("a");
+        for (let i = 0; i < allAElement.length; i++) {
+            allAElement.item(i).addEventListener("click", function (event) {
+                const target = event.target;
+                const href = target.getAttribute("myid");
+                const xmlHttpRequest = new XMLHttpRequest();
+
+                xmlHttpRequest.open("DELETE", href, true);
+                xmlHttpRequest.onreadystatechange = function () {
+                    if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
+                        document.getElementById("info2").innerText = "delete successfully";
+                        refreshAllData();
+                    }
+                }
+                xmlHttpRequest.send();
+            })
+        }
+    }
+
+    function refreshAllData() {
+        const httpRequest = new XMLHttpRequest();
+        httpRequest.open("GET", "/ingredients", true);
+        httpRequest.send();
+        items.innerHTML = "";
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+                refreshTable(JSON.parse(httpRequest.responseText));
+            }
+        }
+    }
+
+    document.getElementById("add").addEventListener("click", function () {
+        const ingredientName = document.getElementById("ingredient_name").value;
+        const caloriesPerGram = document.getElementById("calories_per_gram").value;
+        const obj = {
+            "ingredientsName": ingredientName,
+            "caloriesPerGram": caloriesPerGram,
+        };
+
+        const httpRequest = new XMLHttpRequest();
+        httpRequest.open("POST", "/ingredients", true);
+        httpRequest.setRequestHeader("Content-Type", "application/json");
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+                const json = JSON.parse(httpRequest.responseText);
+                document.getElementById("info1").innerText = "add successfully, " + json["ingredientsName"]+" id is " + json["id"];
+                refreshAllData();
+            }
+        }
+        httpRequest.send(JSON.stringify(obj));
+    });
+
+    window.onload = function () {
+        refreshAllData();
+    }
+</script>
+</body>
+</html>

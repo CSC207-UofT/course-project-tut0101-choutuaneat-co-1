@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dishes</title>
+</head>
+<body>
+<label for="name">dishes name: </label><input id="name" placeholder="name" type="text"><br>
+<label for="ingredient_list">ingredients: </label><br>
+<label id="ingredient_list">
+</label>
+<label for="instructions">instructions: </label><br>
+<textarea id="instructions" placeholder="instructions" cols="50" rows="20"></textarea>
+<br>
+<input id="add" type="button" value="add">
+<br>
+<span id="view"></span>
+<br>
+<br>
+<br>
+<label for="search_name">name: </label><input id="search_name" placeholder="name" type="text"><br>
+<input type="button" value="search" id="search">
+<table style="display: none;" id="data" border="1">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Dish Name</td>
+        <td>Total Calories</td>
+        <td>Ingredient List</td>
+        <td>Instructions</td>
+        <td>Delete</td>
+    </tr>
+    </thead>
+    <tbody id="item_content">
+
+    </tbody>
+</table>
+<span id="table_info" style="display: none">No Data</span><br>
+<span id="info2"></span>
+
+<script>
+    const items = document.getElementById("item_content");
+    function refreshTable(list) {
+        if (list.length !== 0) {
+            document.getElementById("data").style.display = "";
+            document.getElementById("table_info").style.display = "none";
+        }else {
+            document.getElementById("data").style.display = "none";
+            document.getElementById("table_info").style.display = "";
+        }
+        for (let i = 0; i < list.length; i++) {
+            const item = list[i];
+            const ingredientList = item["ingredientsList"];
+            let ingredientListStr = "";
+            for (let j = 0; j < ingredientList.length; j++) {
+                ingredientListStr += ingredientList[j]["weight"] + "g " + ingredientList[j]["ingredientsName"] + "<br>"
+            }
+            const trElement = document.createElement("tr");
+            trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+"</td><td>"+
+                item["totalCalories"] + "</td><td>" + ingredientListStr + "</td><td>" + item["instructions"] +
+                "</td><td><a href='javascript:void(0)' myid='/dishes/" + item["id"] + "'>delete</a></td>";
+            items.appendChild(trElement);
+        }
+        const allAElement = document.getElementsByTagName("a");
+        for (let i = 0; i < allAElement.length; i++) {
+            allAElement.item(i).addEventListener("click", function (event) {
+                const target = event.target;
+                const href = target.getAttribute("myid");
+                const xmlHttpRequest = new XMLHttpRequest();
+
+                xmlHttpRequest.open("DELETE", href, true);
+                xmlHttpRequest.onreadystatechange = function () {
+                    if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
+                        document.getElementById("info2").innerText = "delete successfully";
+                        refreshAllDishes();
+                    }
+                }
+                xmlHttpRequest.send();
+            })
+        }
+    }
+
+    function refreshAllDishes() {
+        const httpRequest = new XMLHttpRequest();
+        httpRequest.open("GET", "/dishes", true);
+        items.innerHTML = "";
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+                refreshTable(JSON.parse(httpRequest.responseText));
+            }
+        }
+        httpRequest.send();
+    }
+
+    document.getElementById("add").addEventListener("click", function() {
+        const name = document.getElementById("name").value;
+        const ingredients = document.getElementsByName("ingredients");
+        const ingredientsList = [];
+        let totalCalories = 0.00;
+        for (let i = 0; i < ingredients.length; i++) {
+            const ingredient = ingredients.item(i);
+            if (ingredient.checked) {
+                const ingredientName = ingredient.value;
+                const ingredientsId = ingredient.getAttribute("ingredients_id");
+                const weight = ingredient.nextElementSibling.nextElementSibling.value;
+                const calorie = ingredient.getAttribute("calorie");
+                ingredientsList.push({
+                    "ingredientsId": ingredientsId,
+                    "weight": weight,
+                });
+                totalCalories += weight * calorie;
+            }
+        }
+
+        const httpRequest = new XMLHttpRequest();
+        httpRequest.open("POST", "/dishes", true);
+        httpRequest.setRequestHeader("Content-type", "application/json");
+        const obj = {
+            "dishName": name,
+            "dishesIngredientsList": ingredientsList,
+            "instructions": document.getElementById("instructions").value,
+            "totalCalories": totalCalories,
+        };
+        httpRequest.send(JSON.stringify(obj));
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+                let json = httpRequest.responseText;
+                json = JSON.parse(json);
+                document.getElementById("view").innerText = "add successfully, id is " + json['id'];
+                refreshAllDishes();
+            }
+        }
+    });
+
+    document.getElementById("search").addEventListener("click", function () {
+        const request = new XMLHttpRequest();
+        const searchName = document.getElementById("search_name").value;
+        request.onreadystatechange = function () {
+            if (request.readyState === 4 && request.status === 200) {
+                items.innerHTML = "";
+                refreshTable(JSON.parse(request.responseText));
+            }
+        }
+        request.open("GET", "/dishes/like/" + searchName, true);
+        request.send();
+    });
+
+    /**
+     * load all ingredients
+     */
+    window.onload = function () {
+        refreshAllDishes();
+        const httpRequest = new XMLHttpRequest();
+        httpRequest.open("GET", "/ingredients", true);
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+                const items = JSON.parse(httpRequest.responseText);
+                const ingredientList = document.getElementById("ingredient_list");
+                if (items.length === 0) {
+                    ingredientList.innerText = "No Ingredients Available";
+                }else {
+                    ingredientList.innerHTML = "";
+                }
+                for (let i = 0; i < items.length; i++) {
+                    const item = items[i];
+                    const ingredient = document.createElement("input");
+                    ingredient.setAttribute("type", "checkbox");
+                    ingredient.setAttribute("name", "ingredients");
+                    ingredient.setAttribute("id", "ingredients" + item["id"])
+                    ingredient.setAttribute("value", item["ingredientsName"]);
+                    ingredient.setAttribute("calorie", item["caloriesPerGram"]);
+                    ingredient.setAttribute("ingredients_id", item["id"]);
+
+                    const label = document.createElement("label");
+                    label.setAttribute("for", "ingredients" + items["id"]);
+                    label.innerText = item["ingredientsName"];
+
+                    const weight = document.createElement("input");
+                    weight.setAttribute("type", "number");
+                    weight.setAttribute("placeholder", "gram");
+                    weight.setAttribute("name", "ingredient");
+
+                    const br = document.createElement("br");
+                    ingredientList.appendChild(ingredient);
+                    ingredientList.appendChild(label);
+                    ingredientList.appendChild(weight);
+                    ingredientList.appendChild(br);
+                }
+            }
+        };
+        httpRequest.send();
+    }
+</script>
+</body>
+</html>
