@@ -11,27 +11,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("registerPage")
+@RequestMapping("register")
 public class RegisterController {
     private static User DUMMY_FORM_PLACEHOLDER_STUDENT = new User();
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("registerPage")
+    @GetMapping()
     public String getRegisterPage(Model model) {
         model.addAttribute("user", DUMMY_FORM_PLACEHOLDER_STUDENT);
 
-        return "registerPage";
+        return "register";
     }
 
-    @PostMapping("registerPage")
+    @PostMapping()
     public String register(@ModelAttribute(value="user") User user, Model model){
 
-        User client = userService.getUserByUsername(user.getId());
+//        User client = userService.getUserByUsername(user.getId());
 
-        if(client == null){
-
+//        if(client == null){
+//        System.out.println(user.getUsername());
             if(userService.checkName(user.getUsername())){
 
                 if(userService.checkPassword(user.getPassword())){
@@ -45,25 +45,25 @@ public class RegisterController {
 
                 }else{
                     model.addAttribute("user", user);
-                    model.addAttribute("message", "Invalid Username!\n " +
-                            "Username cannot contain any special characters!");
+                    model.addAttribute("message", "Invalid Password!\n " +
+                            "Password must contain at least one Uppercase and Lowercase letter!");
 
-                    return "registerPage";
+                    return "register";
                 }
 
             }else{
                 model.addAttribute("user", user);
-                model.addAttribute("message", "Invalid Password!\n " +
-                        "Password must contain at least one Uppercase and Lowercase letter!");
+                model.addAttribute("message", "Invalid Username!\n " +
+                        "Username cannot contain any special characters!");
 
-                return "registerPage";
+                return "register";
             }
-        }
+//        }
 
-        model.addAttribute("user", user);
-        model.addAttribute("message", "User already exists!");
+//        model.addAttribute("user", user);
+//        model.addAttribute("message", "User already exists!");
 
-        return "registerPage";
+//        return "register";
     }
 
 }

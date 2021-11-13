@@ -34,8 +34,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByUsername(Long id) {
-        return userRepository.findById(id.intValue()).orElse(null);
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username).orElse(null);
     }
 
 
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
      * @return If the name is fine
      */
     public boolean checkName(String name){
-        return name.matches("^.*[^a-zA-Z0-9 ].*$");
+        return name.matches("^[a-zA-Z0-9]+$");
     }
 
     public boolean checkPassword(String password){
