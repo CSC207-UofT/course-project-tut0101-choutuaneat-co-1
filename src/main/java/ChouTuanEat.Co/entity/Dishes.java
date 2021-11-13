@@ -1,45 +1,38 @@
 package ChouTuanEat.Co.entity;
 
 //import arraylist
-import ChouTuanEat.Co.entity.Ingredients;
 
-import java.util.ArrayList;
+import lombok.Data;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.util.List;
+
+@Entity
+@Data
+@Table(name = "dishes")
 public class Dishes {
 
-    ArrayList<Ingredients> ingredient_list;
-    String dish_name;
-    String instructions;
-    double total_calories;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    //    Initializer:
-    public Dishes(String name, ArrayList<Ingredients> in_Ingredients, String in_instructions){
-        this.ingredient_list = new ArrayList<>(in_Ingredients);
-        this.dish_name = name;
-        this.instructions = in_instructions;
-        this.total_calories = 0;
-        for (Ingredients each : in_Ingredients) {
-            total_calories += each.getCalories();
-        }
-    }
+    @Transient
+    private List<DishesIngredients> dishesIngredientsList;
 
-    //    get_calories method:
-    public double get_calories() {
-        return this.total_calories;
-    }
+    @Transient
+    private List<Ingredients> ingredientsList;
 
-    //    get_dish_name method:
-    public String get_dish_name(){
-        return this.dish_name;
-    }
+    @Column(name = "dish_name")
+    private String dishName;
 
-    //    get_instructions method:
-    public String get_instructions(){
-        return this.instructions;
-    }
+    @Column(name = "instructions")
+    private String instructions;
 
-    //    get_ingredients method:
-    public ArrayList<Ingredients> get_ingredients(){
-        return this.ingredient_list;
-    }
+    @Column(name = "total_calories")
+    private double totalCalories;       // Java的命名一般都用驼峰式，不推荐下划线
 }
