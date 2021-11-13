@@ -28,10 +28,10 @@ public class RegisterController {
     @PostMapping()
     public String register(@ModelAttribute(value="user") User user, Model model){
 
-        User client = userService.getUserByUsername(user.getId());
+//        User client = userService.getUserByUsername(user.getId());
 
-        if(client == null){
-
+//        if(client == null){
+//        System.out.println(user.getUsername());
             if(userService.checkName(user.getUsername())){
 
                 if(userService.checkPassword(user.getPassword())){
@@ -45,25 +45,25 @@ public class RegisterController {
 
                 }else{
                     model.addAttribute("user", user);
-                    model.addAttribute("message", "Invalid Username!\n " +
-                            "Username cannot contain any special characters!");
+                    model.addAttribute("message", "Invalid Password!\n " +
+                            "Password must contain at least one Uppercase and Lowercase letter!");
 
                     return "register";
                 }
 
             }else{
                 model.addAttribute("user", user);
-                model.addAttribute("message", "Invalid Password!\n " +
-                        "Password must contain at least one Uppercase and Lowercase letter!");
+                model.addAttribute("message", "Invalid Username!\n " +
+                        "Username cannot contain any special characters!");
 
                 return "register";
             }
-        }
+//        }
 
-        model.addAttribute("user", user);
-        model.addAttribute("message", "User already exists!");
+//        model.addAttribute("user", user);
+//        model.addAttribute("message", "User already exists!");
 
-        return "register";
+//        return "register";
     }
 
 }
