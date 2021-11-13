@@ -25,13 +25,13 @@ public class LoginController {
     @PostMapping()
     public String login(@ModelAttribute(value="user") User user, Model model) {
 
-        User client = userService.getUserByUsername(user.getId());
+        User client = userService.getUserByUsername(user.getUsername());
 
         if (client != null && client.getPassword().equals(user.getPassword())) {
             model.addAttribute("user", user);
             model.addAttribute("message", "Welcome");
 
-            return "userInfoPage";
+            return "homepage";
         }
 
         if(client == null){

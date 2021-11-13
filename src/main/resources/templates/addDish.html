@@ -44,7 +44,7 @@
                     <div class="form-group row">
                         <div class="col-md-3">
                             <h4>
-                                <label class="label label-primary" style="margin-top: 10px">Username</label>
+                                <label class="label label-primary" style="margin-top: 10px">Dish's name</label>
                             </h4>
                         </div>
                         <div class="col-md-9">
@@ -86,23 +86,41 @@
                             </div>
                         </div>
                     </div>
-
-                    <div id="org"></div>
-                    <input type="button" onclick="add1();" value="添加" />
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <h4>
+                                <label class="label label-warning" style="margin-top: 10px">Ingredients</label>
+                            </h4>
+                        </div>
+                        <div id="display">
+                            <div id="input"  class="col-md-offset-3">
+                                <div class="col-md-4" style="margin-top: 10px">
+                                    <input type="text" placeholder="name" class="form-control" name="username" {% if username %}value="{{ username }}"{% endif %} autofocus required>
+                                </div>
+                                <div class="col-md-3" style="margin-top: 10px">
+                                    <input type="text" placeholder="weight(gram)" class="form-control" name="username" {% if username %}value="{{ username }}"{% endif %} autofocus required>
+                                </div>
+                                <div class="col-md-4" style="margin-top: 10px">
+                                    <input type="text" placeholder="Calorie per gram(cal/g)" class="form-control" name="username" {% if username %}value="{{ username }}"{% endif %} autofocus required>
+                                </div>
+                            </div>
+                            <input type="button" onclick="addNewIngredient();" style="margin-top: 10px"  value="add" />
+                        </div>
+                    </div>
 
                     <script type="text/javascript">
-                        function add1(){
-                            var input1 = document.createElement('input');
-                            input1.setAttribute('type', 'text');
-                            input1.setAttribute('name', 'organizers[]');
-                            input1.setAttribute('class', 'git');
-
-                            var btn1 = document.getElementById("org");
-                            btn1.insertBefore(input1,null);
+                        function addNewIngredient(){
+                            var input = document.getElementById("input");
+                            var viewer = document.getElementById("display");
+                            viewer.appendChild(input.cloneNode(true));
                         }
                     </script>
-
-                    <textarea class="form-control" name="content" rows="5"></textarea>
+                    <div class="col-md-3">
+                        <h4>
+                            <label class="label label-success" style="margin-top: 10px">Instruction</label>
+                        </h4>
+                    </div>
+                    <textarea class="form-control" name="content" rows="5" style="margin-top: 20px"></textarea>
                     <div class="row">
                         <div class="col-md-4">
                         </div>

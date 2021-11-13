@@ -1,22 +1,23 @@
 package ChouTuanEat.Co.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
-
+    @Column(name="username")
     private String username;
+    @Column(name="password")
     private String password;
+    @Id
+    @Column(name="ID")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
     public Long getId() {
         return id;
     }
@@ -43,6 +44,5 @@ public class User {
                 "Customer[id=%d, username='%s', password='%s']",
                 id, username, password);
     }
-
 
 }
