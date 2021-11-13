@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Blog</title>
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/js/fileinput.min.js"></script>
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/custom.css" rel="stylesheet">
+    <link href="/static/css/fileinput.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!--Navigation bar-->
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle"
+                    data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">ChouTuan Eats</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/blog/main">Home</a></li>
+                <li><a href="/user_logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--Post-->
+<form action="/blog/post_blog" method="POST" enctype="multipart/form-data">
+    <div class="form-group row">
+        <div class="col-md-8 col-md-offset-2">
+            <!--Picture-->
+            <div class="panel panel-success">
+                <div class="panel-heading">New recipe</div>
+                <div class="panel-body">
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <h4>
+                                <label class="label label-primary" style="margin-top: 10px">Dish's name</label>
+                            </h4>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="username" {% if username %}value="{{ username }}"{% endif %} autofocus required>
+                        </div>
+                    </div>
+                    <div class="form-group row" style="margin-top: 20px">
+                        <div class="col-md-2">
+                            <h4>
+                                <label class="label label-info" style="margin-top: 10px">Cooking Method</label>
+                            </h4>
+                        </div>
+                        <div class="col-md-10" style="margin-top: 10px">
+                            <div class="row">
+                                <div class="col-md-2 col-md-offset-2 ">
+                                    <div class="form-check">
+                                        <input type="radio" name="cookingMethod" value="boiled">
+                                        <label style="margin-left: 1px">Boiled</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-check">
+                                        <input type="radio" name="cookingMethod" value="fried">
+                                        <label style="margin-left: 1px">Fried</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-check">
+                                        <input type="radio" name="cookingMethod" value="grilled">
+                                        <label style="margin-left: 1px">Grilled</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-check">
+                                        <input type="radio" name="cookingMethod" value="steamed">
+                                        <label style="margin-left: 1px">Steamed</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <h4>
+                                <label class="label label-warning" style="margin-top: 10px">Ingredients</label>
+                            </h4>
+                        </div>
+                        <div id="display">
+                            <div id="input"  class="col-md-offset-3">
+                                <div class="col-md-4" style="margin-top: 10px">
+                                    <input type="text" placeholder="name" class="form-control" name="username" {% if username %}value="{{ username }}"{% endif %} autofocus required>
+                                </div>
+                                <div class="col-md-3" style="margin-top: 10px">
+                                    <input type="text" placeholder="weight(gram)" class="form-control" name="username" {% if username %}value="{{ username }}"{% endif %} autofocus required>
+                                </div>
+                                <div class="col-md-4" style="margin-top: 10px">
+                                    <input type="text" placeholder="Calorie per gram(cal/g)" class="form-control" name="username" {% if username %}value="{{ username }}"{% endif %} autofocus required>
+                                </div>
+                            </div>
+                            <input type="button" onclick="addNewIngredient();" style="margin-top: 10px"  value="add" />
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        function addNewIngredient(){
+                            var input = document.getElementById("input");
+                            var viewer = document.getElementById("display");
+                            viewer.appendChild(input.cloneNode(true));
+                        }
+                    </script>
+                    <div class="col-md-3">
+                        <h4>
+                            <label class="label label-success" style="margin-top: 10px">Instruction</label>
+                        </h4>
+                    </div>
+                    <textarea class="form-control" name="content" rows="5" style="margin-top: 20px"></textarea>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" value="second" class="btn btn-block btn-primary center-block" style="margin-top: 15px">Submit</button>
+                            <a class="btn btn-block btn-default center-block" href="/blog/main" style="margin-top: 15px">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

@@ -6,9 +6,13 @@ import java.util.List;
 public interface UserService {
     List<User> findAll();
 
-    public User getUserByUsername(String username);
+    User getUserByUsername(String name);
 
     void saveOrUpdate(User user);
 
-    void deleteByUsername(String username);
+    void deleteByUsername(Long id);
+
+    boolean checkName(String name);
+
+    boolean checkPassword(String password);
 }
