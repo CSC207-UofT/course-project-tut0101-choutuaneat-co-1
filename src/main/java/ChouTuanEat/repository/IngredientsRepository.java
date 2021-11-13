@@ -1,6 +1,6 @@
-package ChouTuanEat.Co.repository;
+package ChouTuanEat.repository;
 
-import ChouTuanEat.Co.entity.Ingredients;
+import ChouTuanEat.entity.Ingredients;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

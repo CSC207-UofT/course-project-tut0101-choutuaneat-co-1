@@ -1,5 +1,9 @@
-//package ChouTuanEat.Co.entity;
-//
+package ChouTuanEat.entity;
+
+public enum CookMethods {
+    BOILED, STEAMED, GRILLED, FRIED
+}
+
 //import java.util.ArrayList;
 //
 //class CookMethods {
@@ -16,11 +20,6 @@
 //
 //    }
 //
-////    @Override
-////    public void cook(Dishes in_dish, ArrayList<Ingredients> input){
-////        super.cook(in_dish, input);
-////        this.total_calories = this.total_calories * 4;
-////    }
 //}
 //
 //class Boiled extends Dishes {
@@ -28,11 +27,6 @@
 //        super(name, in_Ingredients, in_instructions);
 //    }
 //
-////    @Override
-////    public void cook(Dishes in_dish, ArrayList<Ingredients> input){
-////        super.cook(in_dish, input);
-////        this.total_calories = this.total_calories * 1;
-////    }
 //}
 //
 //class Steamed extends Dishes {
@@ -41,11 +35,6 @@
 //        this.total_calories = this.total_calories * 2;
 //    }
 //
-////    @Override
-////    public void cook(Dishes in_dish, ArrayList<Ingredients> input){
-////        super.cook(in_dish, input);
-////        this.total_calories = this.total_calories * 2;
-////    }
 //}
 //
 //class Grilled extends Dishes {
@@ -54,10 +43,5 @@
 //        this.total_calories = this.total_calories * 3;
 //    }
 //
-////    @Override
-////    public void cook(Dishes in_dish, ArrayList<Ingredients> input){
-////        super.cook(in_dish, input);
-////        this.total_calories = this.total_calories * 3;
-////    }
 //}
 //

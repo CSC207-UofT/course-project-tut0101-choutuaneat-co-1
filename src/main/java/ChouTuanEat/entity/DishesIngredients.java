@@ -1,4 +1,4 @@
-package ChouTuanEat.Co.entity;
+package ChouTuanEat.entity;
 
 import lombok.Data;
 

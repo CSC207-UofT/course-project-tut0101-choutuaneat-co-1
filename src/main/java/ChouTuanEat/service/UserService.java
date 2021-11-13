@@ -1,6 +1,6 @@
-package ChouTuanEat.Co.service;
+package ChouTuanEat.service;
 
-import ChouTuanEat.Co.entity.User;
+import ChouTuanEat.entity.User;
 import java.util.List;
 
 public interface UserService {
