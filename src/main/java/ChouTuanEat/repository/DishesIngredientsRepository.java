@@ -1,7 +1,7 @@
-package ChouTuanEat.Co.repository;
+package ChouTuanEat.repository;
 
-import ChouTuanEat.Co.entity.DishesIngredients;
-import ChouTuanEat.Co.entity.DishesIngredientsPrimaryKey;
+import ChouTuanEat.entity.DishesIngredients;
+import ChouTuanEat.entity.DishesIngredientsPrimaryKey;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

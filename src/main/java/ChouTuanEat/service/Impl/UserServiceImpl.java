@@ -1,13 +1,13 @@
-package ChouTuanEat.Co.service.Impl;
+package ChouTuanEat.service.Impl;
 
-import ChouTuanEat.Co.entity.User;
-import ChouTuanEat.Co.repository.UserRepository;
-import ChouTuanEat.Co.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+        import ChouTuanEat.entity.User;
+        import ChouTuanEat.repository.UserRepository;
+        import ChouTuanEat.service.UserService;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+        import java.util.ArrayList;
+        import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {

@@ -1,7 +1,7 @@
-package ChouTuanEat.Co.controller;
+package ChouTuanEat.controller;
 
-import ChouTuanEat.Co.entity.User;
-import ChouTuanEat.Co.service.UserService;
+import ChouTuanEat.entity.User;
+import ChouTuanEat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
