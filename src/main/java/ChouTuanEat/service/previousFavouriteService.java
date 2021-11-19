@@ -1,13 +1,14 @@
-//package ChouTuanEat.Co.service;
-//
-//import ChouTuanEat.Co.entity.Dishes;
-//import ChouTuanEat.Co.entity.favourites;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.ArrayList;
-//import java.util.*;
-//
+package ChouTuanEat.service;
+
+import ChouTuanEat.entity.Dishes;
+import ChouTuanEat.entity.favourites;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.*;
+
+
 //@Service
 //public class FavouriteService {
 //    private favourites favourites;
