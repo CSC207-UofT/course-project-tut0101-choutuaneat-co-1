@@ -1,11 +1,42 @@
-//package ChouTuanEat.Co.entity;
-//
-//import org.springframework.stereotype.Component;
-//
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.Collections;
-//
+package ChouTuanEat.entity;
+
+import org.hibernate.annotations.Type;
+import org.springframework.stereotype.Component;
+
+import ChouTuanEat.entity.Dishes;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@Table(name = "favourites")
+public class favourites{
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column
+    private Long userId;
+
+    @ElementCollection
+    @CollectionTable(name = "Dishes")
+    @Column(name = "IDs")
+    private List<Long> idList;
+
+    @Override
+    public String toString(){
+        return "User id: " + userId +
+                "Dishes ID:{ " + idList + " }";
+    }
+
+}
+
 //@Component
 //public class favourites {
 //
@@ -209,3 +240,5 @@
 //    }
 //}
 //
+
+
