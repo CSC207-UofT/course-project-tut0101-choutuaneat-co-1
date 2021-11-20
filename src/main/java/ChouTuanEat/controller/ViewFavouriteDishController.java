@@ -28,29 +28,29 @@ public class ViewFavouriteDishController {
     @GetMapping("/my_favourites")
     @ResponseBody
     public favourites get_List_By_User_Id(@RequestParam Long id){
-        favourites favourite_items = favouriteService.getListByUserId(id);
+        favourites favourite_items = FavouriteService.getListByUserId(id);
         return favourite_items;
     }
 
     @PostMapping("/save")
     public String save_Or_Update(@RequestBody favourites favourite){
-        favouriteService.saveOrUpdate(favourite);
+        FavouriteService.saveOrUpdate(favourite);
         return "updated";
     }
 
     @GetMapping("/list")
     @ResponseBody
     public List<Dishes> get_Favourite_List(@RequestParam Long user_Id){
-        favourites favourite = favouriteService.getListByUserId(user_Id);
-        List<Dishes> favourite_list = favouriteService.getFavouriteList(favourite);
+        favourites favourite = FavouriteService.getListByUserId(user_Id);
+        List<Dishes> favourite_list = FavouriteService.getFavouriteList(favourite);
         return favourite_list;
     }
 
     @GetMapping("/rank")
     @ResponseBody
     public Dishes[] get_Sorted_Favourite_List(@RequestParam Long user_Id, @RequestParam String method){
-        favourites favourite = favouriteService.getListByUserId(user_Id);
-        Dishes[] wanted_dishes = favouriteService.getSortedFavouriteList(favourite, method);
+        favourites favourite = FavouriteService.getListByUserId(user_Id);
+        Dishes[] wanted_dishes = FavouriteService.getSortedFavouriteList(favourite, method);
         return wanted_dishes;
     }
 
