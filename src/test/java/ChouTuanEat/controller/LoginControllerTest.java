@@ -10,8 +10,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 import org.springframework.validation.support.BindingAwareModelMap;
 
@@ -24,26 +22,14 @@ class LoginControllerTest {
 
     private static final String OLD_PASSWORD = "Helloworld";
 
-    private static final String NEW_USER_NAME = "user2";
-
-    private static final String NEW_PASSWORD = "HelloWorld";
-
     @InjectMocks
     private LoginController loginController = new LoginController();
-    private MockMvc mvc;
 
     @Mock
     private UserService userService;
 
     @Before
     public void setUp(){
-        User user = new User();
-        user.setUsername(OLD_USER_NAME);
-        user.setPassword(OLD_PASSWORD);
-        Mockito.when(userService.getUserByUsername(OLD_USER_NAME)).thenReturn(user);
-        Mockito.when(userService.getUserByUsername(NEW_USER_NAME)).thenReturn(null);
-        mvc = MockMvcBuilders.standaloneSetup(loginController).build();
-        mvc = MockMvcBuilders.standaloneSetup(userService).build();
     }
     @Test
     void getLoginPage(){
@@ -61,9 +47,14 @@ class LoginControllerTest {
         User user = new User();
         user.setUsername(OLD_USER_NAME);
         user.setPassword(OLD_PASSWORD);
+        //When the user exists.
         Mockito.when(userService.getUserByUsername(OLD_USER_NAME)).thenReturn(user);
         String response = loginController.login(user, model);
         assertEquals("redirect:/homepage", response);
+        //When the user does not exist.
+        Mockito.when(userService.getUserByUsername(OLD_USER_NAME)).thenReturn(null);
+        response = loginController.login(user, model);
+        assertEquals("login", response);
 
     }
 }
