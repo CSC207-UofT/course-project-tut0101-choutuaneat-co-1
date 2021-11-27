@@ -14,6 +14,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * Collect all the users, put them in a list and return the created list.
+     * @return The list of all users.
+     */
     @Override
     public List<User> findAll(){
 
@@ -23,16 +27,29 @@ public class UserServiceImpl implements UserService {
         return users;
     }
 
+    /**
+     * Save the modifies user into the date base.
+     * @param user The given modified user.
+     */
     @Override
     public void saveOrUpdate(User user){
         userRepository.save(user);
     }
 
+    /**
+     * Delete the user psecified by the given user id.
+     * @param id The given user id.
+     */
     @Override
     public void deleteByUsername(Long id){
         userRepository.deleteById(id.intValue());
     }
 
+    /**
+     * Get the user with the given username.
+     * @param username The given username.
+     * @return The user with the given username.
+     */
     @Override
     public User getUserByUsername(String username) {
         return userRepository.findByUsername(username).orElse(null);
@@ -48,10 +65,20 @@ public class UserServiceImpl implements UserService {
         return name.matches("^[a-zA-Z0-9]+$");
     }
 
+    /**
+     * Check the availability of the given password.
+     * @param password The given password.
+     * @return If the passowrd is valid or not.
+     */
     public boolean checkPassword(String password){
         return checkUpper(password) && checkLower(password);
     }
 
+    /**
+     * Check if the given string contains an uppercase letter.
+     * @param str The given string.
+     * @return If the string contain uppercase letters.
+     */
     private boolean checkUpper(String str){
         for (char c : str.toCharArray()){
             if (Character.isUpperCase(c)){
@@ -61,6 +88,11 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    /**
+     * Check if the given string contains a lowercase letter.
+     * @param str The given string.
+     * @return If the sting contain lowercase letters.
+     */
     private boolean checkLower(String str){
         for (char c : str.toCharArray()){
             if (Character.isLowerCase(c)){

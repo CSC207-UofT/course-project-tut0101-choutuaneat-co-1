@@ -24,31 +24,50 @@ public class favouriteServiceImpl implements favouriteService {
         return null;
     }
 
+    /**
+     * Find the desired favourite object given the user id.
+     * @param id The desired favourite object's id.
+     * @return The desired favourite object.
+     */
     @Override
     public favourites getListByUserId(Long id){
         return favouriteRepository.findById(id).orElse(null);
     }
 
+    /**
+     * Modify the favourite object into the database
+     * @param favourite The given modified favourite object.
+     */
     @Override
     public void saveOrUpdate(favourites favourite){
         favouriteRepository.save(favourite);
     }
 
+    /**
+     * Return the wanted favourite list, given the favourite object.
+     * @param favourite The given favourite object.
+     * @return The favourite object's favourite list.
+     */
     @Override
     public ArrayList<Dishes> getFavouriteList(favourites favourite) {
         List<Long> idList = favourite.getIdList();
-        ArrayList<Dishes> result = new ArrayList<Dishes>();
+        ArrayList<Dishes> result = new ArrayList<>();
         for (Long id : idList) {
             result.add(dishesService.getDishByDishID(id));
         }
         return result;
     }
 
+    /**
+     * Given the favourite object, return the favourite list sorted given the specified method.
+     * @param favourite The given favourite object.
+     * @param method The specified method
+     * @return A sorted list.
+     */
     @Override
     public Dishes[] getSortedFavouriteList(favourites favourite, String method){
         ArrayList<Dishes> dishes = getFavouriteList(favourite);
-        Dishes[] result = getFavouriteRank(dishes, method);
-        return result;
+        return getFavouriteRank(dishes, method);
     }
 
         /**
@@ -58,20 +77,20 @@ public class favouriteServiceImpl implements favouriteService {
      */
     private Dishes[] getFavouriteRank(ArrayList<Dishes> dishes, String method){
         Dishes[] result = new Dishes[dishes.size()];
-        if(method.toLowerCase().equals("name")){
+        if(method.equalsIgnoreCase("name")){
             result = nameSort(dishes);
         }
-        if(method.toLowerCase().equals("calories up")){
+        if(method.equalsIgnoreCase("calories up")){
             result = calorieSort(dishes);
         }
-        if(method.toLowerCase().equals("calories down")){
+        if(method.equalsIgnoreCase("calories down")){
             result = calorieSort(dishes);
             Collections.reverse(Arrays.asList(result));
         }
-        if(method.toLowerCase().equals("difficult up")){
+        if(method.equalsIgnoreCase("difficult up")){
             result = difficultySort(dishes);
         }
-        if(method.toLowerCase().equals("difficult down")){
+        if(method.equalsIgnoreCase("difficult down")){
             result = difficultySort(dishes);
             Collections.reverse(Arrays.asList(result));
         }
