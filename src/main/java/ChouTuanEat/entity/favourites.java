@@ -29,6 +29,14 @@ public class favourites{
     @Column(name = "IDs")
     private List<Long> idList;
 
+    public void setId(Long id){
+        this.userId = id;
+    }
+
+    public void setList(List<Long> idList){
+        this.idList = idList;
+    }
+
     @Override
     public String toString(){
         return "User id: " + userId +

@@ -5,7 +5,7 @@ import ChouTuanEat.entity.Dishes;
 import java.util.List;
 public interface favouriteService {
 
-    Long getId();
+    Long getId(favourites favourite);
 
     favourites getListByUserId(Long id);
 
