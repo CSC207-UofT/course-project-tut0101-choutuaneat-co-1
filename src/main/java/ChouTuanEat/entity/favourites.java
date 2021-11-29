@@ -1,13 +1,6 @@
 package ChouTuanEat.entity;
 
-import org.hibernate.annotations.Type;
-import org.springframework.stereotype.Component;
-
-import ChouTuanEat.entity.Dishes;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import lombok.Data;
 
 import javax.persistence.*;
