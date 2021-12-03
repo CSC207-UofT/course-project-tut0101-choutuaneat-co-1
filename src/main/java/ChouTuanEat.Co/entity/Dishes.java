@@ -34,5 +34,5 @@ public class Dishes {
     private String instructions;
 
     @Column(name = "total_calories")
-    private double totalCalories;       // Java的命名一般都用驼峰式，不推荐下划线
+    private double totalCalories;
 }
