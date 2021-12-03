@@ -66,7 +66,8 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * Check the availability of the given password.
+     * Check the availability of the given password,
+     * a password is valid if the password contains both upper and lower case letters.
      * @param password The given password.
      * @return If the passowrd is valid or not.
      */
