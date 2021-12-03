@@ -15,13 +15,14 @@ import java.util.List;
 
 @Service
 public class favouriteServiceImpl implements favouriteService {
-    DishesService dishesService;
+
     @Autowired
     FavouriteRepository favouriteRepository;
+    DishesService dishesService;
 
     @Override
-    public Long getId(){
-        return null;
+    public Long getId(favourites favourite){
+        return favourite.getId();
     }
 
     /**
@@ -162,7 +163,7 @@ public class favouriteServiceImpl implements favouriteService {
      * @return A dish array containing all elements in the original arraylist
      * with the original ordering.
      */
-    public Dishes[] toDishArray(ArrayList<Dishes> lst){
+    private Dishes[] toDishArray(ArrayList<Dishes> lst){
         Dishes[] result = new Dishes[lst.size()];
         for(int i = 0; i < lst.size(); i++){
             result[i] = lst.get(i);

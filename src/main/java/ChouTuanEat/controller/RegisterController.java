@@ -28,7 +28,6 @@ public class RegisterController {
         User client = userService.getUserByUsername(user.getUsername());
 
         if(client == null){
-//        System.out.println(user.getUsername());
             if(userService.checkName(user.getUsername())){
 
                 if(userService.checkPassword(user.getPassword())){
