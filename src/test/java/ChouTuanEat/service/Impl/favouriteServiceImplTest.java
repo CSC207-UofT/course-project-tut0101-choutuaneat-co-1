@@ -51,7 +51,7 @@ class favouriteServiceImplTest {
         idList.add(3L);
         favourite.setList(idList);
         Optional<favourites> f = Optional.of(favourite);
-        doReturn(f).when(favouriteRepository).findById(1L);
+        doReturn(f).when(favouriteRepository).findByUserId(1L);
 
         favourites dummy = favouriteServices.getListByUserId(1L);
         assert dummy.getIdList() == idList;
