@@ -32,7 +32,7 @@ public class favouriteServiceImpl implements favouriteService {
      */
     @Override
     public favourites getListByUserId(Long id){
-        return favouriteRepository.findById(id).orElse(null);
+        return favouriteRepository.findByUserId(id).orElse(null);
     }
 
     /**

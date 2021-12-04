@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 public interface FavouriteRepository extends CrudRepository<favourites, Long>{
+    @Query("SELECT u FROM favourites u WHERE u.userId = ?1")
+    public Optional<favourites> findByUserId(Long id);
 }
