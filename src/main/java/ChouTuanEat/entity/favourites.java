@@ -2,6 +2,7 @@ package ChouTuanEat.entity;
 
 import java.util.List;
 import lombok.Data;
+import org.hibernate.annotations.CollectionId;
 
 import javax.persistence.*;
 
@@ -17,9 +18,10 @@ public class favourites{
     @Column
     private Long userId;
 
+//    @ElementCollection
+//    @CollectionTable(name = "Dishes", joinColumns = @JoinColumn(name = "UserId"))
+//    @Column(name = "IDs")
     @ElementCollection
-    @CollectionTable(name = "Dishes")
-    @Column(name = "IDs")
     private List<Long> idList;
 
     public void setId(Long id){
