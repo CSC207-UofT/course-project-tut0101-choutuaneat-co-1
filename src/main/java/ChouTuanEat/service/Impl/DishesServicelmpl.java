@@ -64,6 +64,7 @@ public class DishesServicelmpl implements DishesService {
     public List<Dishes> getAllDishes() {
         return dishesRepository.findAll();
     }
+
     @Override
     public void assembleDishes(Dishes dishes) {
         dishes.setDishesIngredientsList(dishesIngredientsRepository.findAllByDishesId(dishes.getId()));

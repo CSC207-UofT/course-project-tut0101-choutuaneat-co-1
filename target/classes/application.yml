@@ -1,0 +1,40 @@
+spring:
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        hibernate.ddl-auto: update
+        generate-ddl: true              # 加了这个就不用自己写SQL文件定义表结构了
+    h2:
+        console.enabled: true
+        console.path: /h2
+    datasource:
+#        url: jdbc:h2:file:D:/sample #jdbc:h2:file:/data/sample (Windows only)
+        url: jdbc:h2:file:C:/data/sample #jdbc:h2:file:/data/sample (Windows only)
+        username: sa
+        password: password
+        driver-class-name: org.h2.Driver
+    flyway:
+        baseline-on-migrate: true
+        baselineVersion: 0.0
+logging:
+    level:
+        root: debug
+
+#spring:
+#    thymeleaf:
+#        cache: false
+#    jpa:
+#        spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+#        hibernate.ddl-auto: update
+#    h2:
+#        console.enabled: true
+#        console.path: /h2
+#        settings.web-allow-others: true
+#    datasource:
+#        url: jdbc:h2:file:C:/data/sample #jdbc:h2:file:/data/sample (Windows only)
+#        username: sa
+#        password: password
+#        driver-class-name: org.h2.Driver
+#    flyway:
+#        baseline-on-migrate: true
+#        baselineVersion: 0.0
+

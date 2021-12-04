@@ -2,6 +2,9 @@
 
 # Gradle .gitignore (https://github.com/github/gitignore/blob/master/Gradle.gitignore)
 .gradle
+.idea
+target
+out
 **/build/
 !src/**/build/
 
