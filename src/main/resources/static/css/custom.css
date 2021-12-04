@@ -109,7 +109,6 @@ body{
 }
 
 .add-dish-form, .add-ingred-form{
-    /*margin-top: 100px;*/
     position: relative;
     left: 20%;
     border-bottom-style: solid;
@@ -120,6 +119,10 @@ body{
 .search-results, .ingred-data{
     position: relative;
     left: 20%;
+    background-color: #333;
+    opacity: 80%;
+    width: 700px;
+    padding: 20px 20px;
 }
 
 h4{
@@ -141,4 +144,8 @@ h3{
     left: 10px;
     height: 20px;
     font-weight: normal;
+}
+
+td{
+    padding: 5px;
 }

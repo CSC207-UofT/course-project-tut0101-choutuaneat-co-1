@@ -70,7 +70,7 @@
         <tr>
             <td>ID</td>
             <td>Dish Name</td>
-            <td>Total Calories</td>
+<!--            <td>Total Calories</td>-->
             <td>Ingredient List</td>
             <td>Instructions</td>
             <td>Delete</td>
@@ -99,9 +99,14 @@
                 for (let j = 0; j < ingredientList.length; j++) {
                     ingredientListStr += ingredientList[j]["weight"] + "g " + ingredientList[j]["ingredientsName"] + "<br>"
                 }
+                // const trElement = document.createElement("tr");
+                // trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+"</td><td>"+
+                //     item["totalCalories"] + "</td><td>" + ingredientListStr + "</td><td>" + item["instructions"] +
+                //     "</td><td><a href='javascript:void(0)' myid='/dishes/" + item["id"] + "'>delete</a></td>";
+                // items.appendChild(trElement);
                 const trElement = document.createElement("tr");
-                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+"</td><td>"+
-                    item["totalCalories"] + "</td><td>" + ingredientListStr + "</td><td>" + item["instructions"] +
+                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+ "</td><td>"
+                    + ingredientListStr + "</td><td>" + item["instructions"] +
                     "</td><td><a href='javascript:void(0)' myid='/dishes/" + item["id"] + "'>delete</a></td>";
                 items.appendChild(trElement);
             }
@@ -140,19 +145,19 @@
             const name = document.getElementById("dish-name").value;
             const ingredients = document.getElementsByName("ingredients");
             const ingredientsList = [];
-            let totalCalories = 0.00;
+            // let totalCalories = 0.00;
             for (let i = 0; i < ingredients.length; i++) {
                 const ingredient = ingredients.item(i);
                 if (ingredient.checked) {
                     const ingredientName = ingredient.value;
                     const ingredientsId = ingredient.getAttribute("ingredients_id");
                     const weight = ingredient.nextElementSibling.nextElementSibling.value;
-                    const calorie = ingredient.getAttribute("calorie");
+                    // const calorie = ingredient.getAttribute("calorie");
                     ingredientsList.push({
                         "ingredientsId": ingredientsId,
                         "weight": weight,
                     });
-                    totalCalories += weight * calorie;
+                    // totalCalories += weight * calorie;
                 }
             }
 
@@ -163,14 +168,14 @@
                 "dishName": name,
                 "dishesIngredientsList": ingredientsList,
                 "instructions": document.getElementById("instructions").value,
-                "totalCalories": totalCalories,
+                // "totalCalories": totalCalories,
             };
             httpRequest.send(JSON.stringify(obj));
             httpRequest.onreadystatechange = function () {
                 if (httpRequest.readyState === 4 && httpRequest.status === 200) {
                     let json = httpRequest.responseText;
                     json = JSON.parse(json);
-                    document.getElementById("view").innerText = "add successfully, id is " + json['id'];
+                    document.getElementById("view").innerText = "Add successfully, id is " + json['id'];
                     refreshAllDishes();
                 }
             }
@@ -212,7 +217,7 @@
                         ingredient.setAttribute("name", "ingredients");
                         ingredient.setAttribute("id", "ingredients" + item["id"])
                         ingredient.setAttribute("value", item["ingredientsName"]);
-                        ingredient.setAttribute("calorie", item["caloriesPerGram"]);
+                        // ingredient.setAttribute("calorie", item["caloriesPerGram"]);
                         ingredient.setAttribute("ingredients_id", item["id"]);
 
                         const label = document.createElement("label");

@@ -31,7 +31,7 @@
                 <input type="button" value="search" id="search">
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <!--                <li class="fav-option"><a th:href=@{/}>Favorites</a></li>-->
+<!--                <li class="fav-option"><a th:href=@{/favouritesPage}>Favorites</a></li>-->
                 <li class="login-option"><a th:href=@{/login}>Logout</a></li>
             </ul>
         </div>
@@ -58,7 +58,7 @@
         <tr>
             <td>ID</td>
             <td>Dish Name</td>
-            <td>Total Calories</td>
+<!--            <td>Total Calories</td>-->
             <td>Ingredient List</td>
             <td>Instructions</td>
             <td>Delete</td>
@@ -87,9 +87,14 @@
                 for (let j = 0; j < ingredientList.length; j++) {
                     ingredientListStr += ingredientList[j]["weight"] + "g " + ingredientList[j]["ingredientsName"] + "<br>"
                 }
+                // const trElement = document.createElement("tr");
+                // trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+"</td><td>"+
+                //     item["totalCalories"] + "</td><td>" + ingredientListStr + "</td><td>" + item["instructions"] +
+                //     "</td><td><a href='javascript:void(0)' myid='/dishes/" + item["id"] + "'>delete</a></td>";
+                // items.appendChild(trElement);
                 const trElement = document.createElement("tr");
-                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+"</td><td>"+
-                    item["totalCalories"] + "</td><td>" + ingredientListStr + "</td><td>" + item["instructions"] +
+                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+"</td><td>" +
+                    ingredientListStr + "</td><td>" + item["instructions"] +
                     "</td><td><a href='javascript:void(0)' myid='/dishes/" + item["id"] + "'>delete</a></td>";
                 items.appendChild(trElement);
             }
@@ -160,7 +165,7 @@
                         ingredient.setAttribute("name", "ingredients");
                         ingredient.setAttribute("id", "ingredients" + item["id"])
                         ingredient.setAttribute("value", item["ingredientsName"]);
-                        ingredient.setAttribute("calorie", item["caloriesPerGram"]);
+                        // ingredient.setAttribute("calorie", item["caloriesPerGram"]);
                         ingredient.setAttribute("ingredients_id", item["id"]);
 
                         const label = document.createElement("label");

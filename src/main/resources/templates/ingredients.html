@@ -19,7 +19,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <!--                <li class="fav-option"><a href="favorites.html">Favorites</a></li>-->
+<!--                <li class="fav-option"><a th:href=@{/favouritesPage}>Favorites</a></li>-->
                 <li class="login-option"><a th:href=@{/login}>Logout</a></li>
             </ul>
         </div>
@@ -42,10 +42,12 @@
 <!-- Add Ingredients Form -->
 <div class="add-ingred-form">
     <h3>Adding an Ingredient</h3>
-    <h4>Step 1.</h4><t for="ingredient_name">Enter ingredient name: </t>
+<!--    <h4>Step 1.</h4>-->
+    <t for="ingredient_name">Enter ingredient name: </t>
     <input id="ingredient_name" type="text" placeholder="ingredient name"><br>
-    <h4>Step 2.</h4><t for="calories_per_gram">Enter calories per gram: </t>
-    <input id="calories_per_gram" type="number" placeholder="kcal/g"><br><br>
+<!--    <h4>Step 2.</h4><t for="calories_per_gram">Enter calories per gram: </t>-->
+<!--    <input id="calories_per_gram" type="number" placeholder="kcal/g"><br>-->
+    <br>
     <input type="button" value="Add Ingredient!!" id="add"><br>
 </div>
 
@@ -60,7 +62,7 @@
         <tr>
             <td>ID</td>
             <td>Ingredient Name</td>
-            <td>Calories Per Gram</td>
+<!--            <td>Calories Per Gram</td>-->
             <td>Delete</td>
         </tr>
         </thead>
@@ -82,11 +84,18 @@
                 document.getElementById("data").style.display = "none";
                 document.getElementById("table_info").style.display = "";
             }
+            // for (let i = 0; i < list.length; i++) {
+            //     const item = list[i];
+            //     const trElement = document.createElement("tr");
+            //     trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["ingredientsName"]+"</td><td>"+
+            //         item["caloriesPerGram"]+"</td><td><a href='javascript:void(0)' myid='/ingredients/"+item["id"]+"'>delete</a></td>";
+            //     items.appendChild(trElement);
+            // }
             for (let i = 0; i < list.length; i++) {
                 const item = list[i];
                 const trElement = document.createElement("tr");
-                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["ingredientsName"]+"</td><td>"+
-                    item["caloriesPerGram"]+"</td><td><a href='javascript:void(0)' myid='/ingredients/"+item["id"]+"'>delete</a></td>";
+                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["ingredientsName"]
+                    + "</td><td><a href='javascript:void(0)' myid='/ingredients/"+item["id"]+"'>delete</a></td>";
                 items.appendChild(trElement);
             }
             const allAElement = document.getElementsByTagName("a");
@@ -99,7 +108,7 @@
                     xmlHttpRequest.open("DELETE", href, true);
                     xmlHttpRequest.onreadystatechange = function () {
                         if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
-                            document.getElementById("info2").innerText = "delete successfully";
+                            document.getElementById("info2").innerText = "Delete successfully";
                             refreshAllData();
                         }
                     }
@@ -122,10 +131,10 @@
 
         document.getElementById("add").addEventListener("click", function () {
             const ingredientName = document.getElementById("ingredient_name").value;
-            const caloriesPerGram = document.getElementById("calories_per_gram").value;
+            // const caloriesPerGram = document.getElementById("calories_per_gram").value;
             const obj = {
                 "ingredientsName": ingredientName,
-                "caloriesPerGram": caloriesPerGram,
+                // "caloriesPerGram": caloriesPerGram,
             };
 
             const httpRequest = new XMLHttpRequest();
@@ -134,7 +143,7 @@
             httpRequest.onreadystatechange = function () {
                 if (httpRequest.readyState === 4 && httpRequest.status === 200) {
                     const json = JSON.parse(httpRequest.responseText);
-                    document.getElementById("info1").innerText = "add successfully, " + json["ingredientsName"]+" id is " + json["id"];
+                    document.getElementById("info1").innerText = "Add successfully, " + json["ingredientsName"]+" id is " + json["id"];
                     refreshAllData();
                 }
             }
