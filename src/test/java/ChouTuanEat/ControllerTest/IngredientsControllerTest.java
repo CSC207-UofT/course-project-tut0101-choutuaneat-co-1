@@ -1,4 +1,4 @@
-package ChouTuanEat.Co.controller;
+package ChouTuanEat.ControllerTest;
 
 import ChouTuanEat.Co.ChouTuanEatApplication;
 import ChouTuanEat.Co.entity.Dishes;
