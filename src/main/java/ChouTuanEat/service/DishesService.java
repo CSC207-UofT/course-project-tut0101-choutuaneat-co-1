@@ -22,9 +22,9 @@ public interface DishesService {
 
     List<Dishes> getAllDishes();
 
-    void assembleDishes(Dishes dish);
+    void assembleDishes(Dishes dishes);
 
-    void saveOrUpdate(Dishes dish);
+    void saveOrUpdate(Dishes dishes);
 
     void deleteDishesByID(Long id);
 }

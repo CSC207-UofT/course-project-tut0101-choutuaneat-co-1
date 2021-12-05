@@ -2,7 +2,7 @@ spring:
     jpa:
         database-platform: org.hibernate.dialect.H2Dialect
         hibernate.ddl-auto: update
-        generate-ddl: true
+        generate-ddl: true              # 加了这个就不用自己写SQL文件定义表结构了
     h2:
         console.enabled: true
         console.path: /h2

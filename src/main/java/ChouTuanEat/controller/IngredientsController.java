@@ -16,11 +16,17 @@ public class IngredientsController {
     @Autowired
     private IngredientsService ingredientsService;
 
+
     @GetMapping("/addIngredients")
     public String getAddIngredientPage() {
         return "ingredients";
     }
 
+    /**
+     * Add ingredients to the database.
+     * @param ingredients The ingredients that will be added to the database.
+     * @return the ingredients that were added to the database.
+     */
     @ResponseBody
     @PostMapping("/ingredients")
     public Ingredients addIngredients(@RequestBody Ingredients ingredients) {
@@ -28,6 +34,11 @@ public class IngredientsController {
         return ingredients;
     }
 
+    /**
+     * Get ingreidients that to be queried, it can be queried by ID and list query.
+     * @param id The ID of ingredients.
+     * @return ingredients that are qualified.
+     */
     @ResponseBody
     @GetMapping(value = {"/ingredients", "/ingredients/{id}"})
     public List<Ingredients> getIngredients(@PathVariable(value = "id", required = false) Long id) {
@@ -37,6 +48,11 @@ public class IngredientsController {
         return ingredientsService.getAllIngredients();
     }
 
+    /**
+     * Delete ingredients by ingredients' ID
+     * @param id The ID of ingredients that will be deleted.
+     * @return the information of the ingredients that were deleted.
+     */
     @ResponseBody
     @DeleteMapping(value = { "/ingredients/{id}"})
     public Ingredients deleteIngredients(@PathVariable(value = "id") Long id) {
