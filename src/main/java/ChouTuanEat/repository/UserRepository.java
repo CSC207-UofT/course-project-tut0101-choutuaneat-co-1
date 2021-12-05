@@ -8,8 +8,8 @@ import java.util.Optional;
 
 @Repository
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
     @Query("SELECT u FROM User u WHERE u.username = ?1")
-    public Optional<User>  findByUsername(String username);
+    Optional<User>  findByUsername(String username);
 }

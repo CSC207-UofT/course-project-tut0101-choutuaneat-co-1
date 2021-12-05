@@ -73,7 +73,6 @@
             <td>Total Calories</td>
             <td>Ingredient List</td>
             <td>Instructions</td>
-            <td>Delete</td>
         </tr>
         </thead>
         <tbody id="item_content">
@@ -102,25 +101,8 @@
                 const trElement = document.createElement("tr");
                 trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+"</td><td>"+
                     item["totalCalories"] + "</td><td>" + ingredientListStr + "</td><td>" + item["instructions"] +
-                    "</td><td><a href='javascript:void(0)' myid='/dishes/" + item["id"] + "'>delete</a></td>";
+                    "</td>";
                 items.appendChild(trElement);
-            }
-            const allAElement = document.getElementsByTagName("a");
-            for (let i = 0; i < allAElement.length; i++) {
-                allAElement.item(i).addEventListener("click", function (event) {
-                    const target = event.target;
-                    const href = target.getAttribute("myid");
-                    const xmlHttpRequest = new XMLHttpRequest();
-
-                    xmlHttpRequest.open("DELETE", href, true);
-                    xmlHttpRequest.onreadystatechange = function () {
-                        if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
-                            document.getElementById("info2").innerText = "delete successfully";
-                            refreshAllDishes();
-                        }
-                    }
-                    xmlHttpRequest.send();
-                })
             }
         }
 
@@ -170,7 +152,7 @@
                 if (httpRequest.readyState === 4 && httpRequest.status === 200) {
                     let json = httpRequest.responseText;
                     json = JSON.parse(json);
-                    document.getElementById("view").innerText = "add successfully, id is " + json['id'];
+                    alert( "add successfully!");
                     refreshAllDishes();
                 }
             }

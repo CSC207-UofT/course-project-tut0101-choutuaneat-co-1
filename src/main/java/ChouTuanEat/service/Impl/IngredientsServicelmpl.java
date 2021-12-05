@@ -1,6 +1,5 @@
 package ChouTuanEat.service.Impl;
 
-import ChouTuanEat.entity.Dishes;
 import ChouTuanEat.entity.Ingredients;
 import ChouTuanEat.repository.IngredientsRepository;
 import ChouTuanEat.service.IngredientsService;

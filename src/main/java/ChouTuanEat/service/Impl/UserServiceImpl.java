@@ -1,13 +1,15 @@
 package ChouTuanEat.service.Impl;
 
-        import ChouTuanEat.entity.User;
-        import ChouTuanEat.repository.UserRepository;
-        import ChouTuanEat.service.UserService;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.stereotype.Service;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import ChouTuanEat.entity.User;
+import ChouTuanEat.repository.*;
+import ChouTuanEat.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -37,15 +39,6 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * Delete the user psecified by the given user id.
-     * @param id The given user id.
-     */
-    @Override
-    public void deleteByUsername(Long id){
-        userRepository.deleteById(id.intValue());
-    }
-
-    /**
      * Get the user with the given username.
      * @param username The given username.
      * @return The user with the given username.
@@ -54,7 +47,6 @@ public class UserServiceImpl implements UserService {
     public User getUserByUsername(String username) {
         return userRepository.findByUsername(username).orElse(null);
     }
-
 
     /**
      * Check the availability of the given name.

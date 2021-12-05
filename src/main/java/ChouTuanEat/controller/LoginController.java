@@ -7,10 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("login")
 public class LoginController {
-    private static User DUMMY_FORM_PLACEHOLDER_STUDENT = new User();
+    private static final User DUMMY_FORM_PLACEHOLDER_STUDENT = new User();
 
     @Autowired
     private UserService userService;
@@ -23,11 +25,10 @@ public class LoginController {
     }
 
     @PostMapping()
-    public String login(@ModelAttribute(value="user") User user, Model model) {
-
+    public String login(@ModelAttribute(value="user") User user, Model model, HttpServletRequest request) {
         User client = userService.getUserByUsername(user.getUsername());
-
         if (client != null && client.getPassword().equals(user.getPassword())) {
+            request.getSession().setAttribute("userId", client.getId());
             model.addAttribute("user", user);
             model.addAttribute("message", "Welcome");
 //            return "index";

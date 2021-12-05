@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("register")
 public class RegisterController {
-    private static User DUMMY_FORM_PLACEHOLDER_STUDENT = new User();
+    private static final User DUMMY_FORM_PLACEHOLDER_STUDENT = new User();
 
     @Autowired
     private UserService userService;
@@ -41,7 +41,7 @@ public class RegisterController {
 
                 }else{
                     model.addAttribute("user", user);
-                    model.addAttribute("message", "Invalid Password!\n " +
+                    model.addAttribute("message", "Invalid Password! " +
                             "Password must contain at least one Uppercase and Lowercase letter!");
 
                     return "register";
@@ -49,7 +49,7 @@ public class RegisterController {
 
             }else{
                 model.addAttribute("user", user);
-                model.addAttribute("message", "Invalid Username!\n " +
+                model.addAttribute("message", "Invalid Username! " +
                         "Username cannot contain any special characters!");
 
                 return "register";

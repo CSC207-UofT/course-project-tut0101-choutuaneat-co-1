@@ -1,20 +1,11 @@
 package ChouTuanEat.service;
 import ChouTuanEat.entity.Dishes;
-import ChouTuanEat.entity.CookMethods;
-import ChouTuanEat.entity.User;
+import ChouTuanEat.entity.UserFavoriteDishes;
 
 import java.util.List;
 
 public interface DishesService {
     Long getId();
-
-    CookMethods getCookingMethod();
-
-    String getDishName();
-
-    String getInstructions();
-
-    double getTotalCalories();
 
     Dishes getDishByDishID(Long id);
 
@@ -22,9 +13,15 @@ public interface DishesService {
 
     List<Dishes> getAllDishes();
 
+    List<Dishes> getFavorListByUserId(Long id);
+
     void assembleDishes(Dishes dish);
 
     void saveOrUpdate(Dishes dish);
 
+    void saveOrUpdateFavoriteList(UserFavoriteDishes useDishIdPair);
+
     void deleteDishesByID(Long id);
+
+    void deleteDishesFromFavor(UserFavoriteDishes useDishIdPair);
 }
