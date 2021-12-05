@@ -32,9 +32,6 @@ public class Dishes {
     @Column(name = "instructions")
     private String instructions;
 
-    @Column(name = "cooking_method")
-    private CookMethods cookingMethod;
-
     @Column(name = "total_calories")
     private double totalCalories;
 }
