@@ -6,8 +6,6 @@ import java.util.List;
 public interface DishesService {
     Long getId();
 
-    CookMethods getCookingMethod();
-
     String getDishName();
 
     String getInstructions();

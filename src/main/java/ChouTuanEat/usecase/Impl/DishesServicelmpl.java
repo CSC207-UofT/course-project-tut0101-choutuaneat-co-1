@@ -30,11 +30,6 @@ public class DishesServicelmpl implements DishesService {
     }
 
     @Override
-    public CookMethods getCookingMethod() {
-        return null;
-    }
-
-    @Override
     public String getDishName() {
         return null;
     }
