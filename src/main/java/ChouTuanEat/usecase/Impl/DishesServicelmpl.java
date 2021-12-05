@@ -1,12 +1,11 @@
-package ChouTuanEat.service.Impl;
+package ChouTuanEat.usecase.Impl;
 
-import ChouTuanEat.entity.CookMethods;
 import ChouTuanEat.entity.Dishes;
 import ChouTuanEat.entity.DishesIngredients;
 import ChouTuanEat.repository.DishesIngredientsRepository;
 import ChouTuanEat.repository.DishesRepository;
 import ChouTuanEat.repository.IngredientsRepository;
-import ChouTuanEat.service.DishesService;
+import ChouTuanEat.usecase.DishesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

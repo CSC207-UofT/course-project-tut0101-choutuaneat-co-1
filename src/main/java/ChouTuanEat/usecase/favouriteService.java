@@ -1,4 +1,4 @@
-package ChouTuanEat.service;
+package ChouTuanEat.usecase;
 
 import ChouTuanEat.entity.favourites;
 import ChouTuanEat.entity.Dishes;

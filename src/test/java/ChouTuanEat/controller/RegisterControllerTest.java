@@ -1,7 +1,7 @@
 package ChouTuanEat.controller;
 
 import ChouTuanEat.entity.User;
-import ChouTuanEat.service.UserService;
+import ChouTuanEat.usecase.UserService;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

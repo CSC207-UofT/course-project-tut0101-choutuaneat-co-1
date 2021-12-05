@@ -1,7 +1,7 @@
 package ChouTuanEat.service.Impl;
 
 import ChouTuanEat.entity.Dishes;
-import ChouTuanEat.service.DishesService;
+import ChouTuanEat.usecase.DishesService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
