@@ -1,21 +1,13 @@
 package ChouTuanEat.controller;
 
 import ChouTuanEat.entity.Dishes;
-import ChouTuanEat.entity.DishesIngredients;
-import ChouTuanEat.repository.DishesIngredientsRepository;
-import ChouTuanEat.repository.DishesRepository;
-import ChouTuanEat.repository.IngredientsRepository;
-import ChouTuanEat.service.DishesService;
+import ChouTuanEat.usecase.DishesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Controller
 public class DishesController {

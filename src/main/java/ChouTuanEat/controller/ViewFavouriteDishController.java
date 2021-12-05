@@ -3,13 +3,11 @@ package ChouTuanEat.controller;
 import ChouTuanEat.entity.Dishes;
 //import ChouTuanEat.entity.User;
 import ChouTuanEat.entity.favourites;
-import ChouTuanEat.service.favouriteService;
+import ChouTuanEat.usecase.favouriteService;
 //import ChouTuanEat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 
 //import java.util.ArrayList;

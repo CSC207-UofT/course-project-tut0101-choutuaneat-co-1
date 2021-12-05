@@ -1,8 +1,7 @@
 package ChouTuanEat.controller;
 
 import ChouTuanEat.entity.Ingredients;
-import ChouTuanEat.repository.IngredientsRepository;
-import ChouTuanEat.service.IngredientsService;
+import ChouTuanEat.usecase.IngredientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

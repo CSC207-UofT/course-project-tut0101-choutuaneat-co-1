@@ -1,7 +1,5 @@
-package ChouTuanEat.service;
+package ChouTuanEat.usecase;
 import ChouTuanEat.entity.Dishes;
-import ChouTuanEat.entity.CookMethods;
-import ChouTuanEat.entity.User;
 
 import java.util.List;
 

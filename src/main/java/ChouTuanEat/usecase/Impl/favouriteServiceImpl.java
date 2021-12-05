@@ -1,10 +1,10 @@
-package ChouTuanEat.service.Impl;
+package ChouTuanEat.usecase.Impl;
 
 import ChouTuanEat.entity.Dishes;
 import ChouTuanEat.entity.favourites;
 import ChouTuanEat.repository.FavouriteRepository;
-import ChouTuanEat.service.DishesService;
-import ChouTuanEat.service.favouriteService;
+import ChouTuanEat.usecase.DishesService;
+import ChouTuanEat.usecase.favouriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
