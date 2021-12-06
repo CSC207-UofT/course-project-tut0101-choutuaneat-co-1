@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <!--    <meta charset="UTF-8">-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Register Page</title>
+    <script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/css/custom.css}" rel="stylesheet">
+</head>
+<body th:style="'background-image: url(/img/background.jpg); background-size: 100%'">
+
+<!--Navigation bar-->
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle"
+                    data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">ChouTuan Eats</a>
+        </div>
+    </div>
+</div>
+<!--Register form-->
+<form th:action="@{/register}" th:method="post" class="form-login" th:object="${user}" enctype="multipart/form-data">
+    <div class="form-group row" style="margin-top: 100px">
+        <div class="col-md-3">
+            <h4>
+                <label class="label label-primary" style="margin-top: 10px">User name</label>
+            </h4>
+        </div>
+        <div class="col-md-9">
+            <input type="text" class="form-control" name="username" placeholder="Enter Username" th:field="*{username}" autofocus required>
+        </div>
+    </div>
+    <div class="form-group row" style="margin-top: 20px">
+        <div class="col-md-3">
+            <h4>
+                <label class="label label-warning" style="margin-top: 10px">Password</label>
+            </h4>
+        </div>
+        <div class="col-md-9">
+            <input type="password" class="form-control" name="password" placeholder="Enter Password" th:field="*{password}" required>
+        </div>
+    </div>
+<!--    <div class="form-group row" style="margin-top: 20px">-->
+<!--        <div class="col-md-3">-->
+<!--            <h4>-->
+<!--                <label class="label label-warning" style="margin-top: 10px">Confirm</label>-->
+<!--            </h4>-->
+<!--        </div>-->
+<!--        <div class="col-md-9">-->
+<!--            <input type="password" class="form-control" name="confirm" placeholder="Enter Password Again" th:field="*{password}" required>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="form-group">
+        <a class="btn btn-default" th:href="@{/login}" style="margin-top: 10px">Back</a>
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px; float:right">Submit</button>
+    </div>
+</form>
+<script>
+    let message = "[[${message}]]";
+    if(message != "")
+        alert(message);
+</script>
+</body>
+</html>
