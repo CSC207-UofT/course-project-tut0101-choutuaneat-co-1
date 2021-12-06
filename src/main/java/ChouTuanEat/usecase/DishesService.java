@@ -23,4 +23,6 @@ public interface DishesService {
     void deleteDishesByID(Long id);
 
     void deleteDishesFromFavor(UserFavoriteDishes useDishIdPair);
+
+    Object getId();
 }

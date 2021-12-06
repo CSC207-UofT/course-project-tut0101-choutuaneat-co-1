@@ -124,4 +124,9 @@ public class DishesServicelmpl implements DishesService {
     public void deleteDishesFromFavor(UserFavoriteDishes idPair) {
         usersFavoriteDishesRepository.delete(idPair);
     }
+
+    @Override
+    public Object getId() {
+        return null;
+    }
 }
