@@ -2,7 +2,8 @@ package ChouTuanEat.service.Impl;
 
 import ChouTuanEat.entity.User;
 import ChouTuanEat.repository.UserRepository;
-import ChouTuanEat.service.UserService;
+import ChouTuanEat.usecase.Impl.UserServiceImpl;
+import ChouTuanEat.usecase.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

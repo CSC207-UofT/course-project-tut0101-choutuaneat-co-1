@@ -1,10 +1,13 @@
-package ChouTuanEat.service.Impl;
+package ChouTuanEat.usecase.Impl;
 
 import ChouTuanEat.entity.Dishes;
 import ChouTuanEat.entity.DishesIngredients;
 import ChouTuanEat.entity.UserFavoriteDishes;
-import ChouTuanEat.repository.*;
-import ChouTuanEat.service.DishesService;
+import ChouTuanEat.usecase.DishesService;
+import ChouTuanEat.repository.DishesIngredientsRepository;
+import ChouTuanEat.repository.DishesRepository;
+import ChouTuanEat.repository.IngredientsRepository;
+import ChouTuanEat.usecase.DishesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +29,15 @@ public class DishesServicelmpl implements DishesService {
 
     @Autowired
     private UsersFavoriteDishesRepository usersFavoriteDishesRepository;
+    @Override
+    public Long getId() {
+        return null;
+    }
+
+    @Override
+    public String getDishName() {
+        return null;
+    }
 
     @Override
     public Long getId() {
@@ -33,15 +45,34 @@ public class DishesServicelmpl implements DishesService {
     }
 
     @Override
+    public double getTotalCalories() {
+        return 0;
+    }
+
+    /**
+     * Find the corresponding dishes according to the ID of the dishes.
+     * @param id The id of dishes.
+     * @return dishes
+     */
+    @Override
     public Dishes getDishByDishID(Long id) {
         return dishesRepository.findById(id).orElse(null);
     }
 
+    /**
+     * Use fuzzy search to find dishes according to their name.
+     * @param name dishes name
+     * @return dishes that meet the search requirements.
+     */
     @Override
     public List<Dishes> getDishByDishName(String name) {
         return dishesRepository.findAllLikeDishName(name);
     }
 
+    /**
+     * Get all dishes.
+     * @return all dishes.
+     */
     @Override
     public List<Dishes> getAllDishes() {
         return dishesRepository.findAll();
@@ -59,6 +90,10 @@ public class DishesServicelmpl implements DishesService {
         return dishesList;
     }
 
+    /**
+     * Assemble different ingredients into one dish.
+     * @param dishes Dishes to be assembled.
+     */
     @Override
     public void assembleDishes(Dishes dishes) {
         dishes.setDishesIngredientsList(dishesIngredientsRepository.findAllByDishesId(dishes.getId()));
@@ -74,6 +109,10 @@ public class DishesServicelmpl implements DishesService {
         });
     }
 
+    /**
+     * Save dishes to the database, update if dishes already exist.
+     * @param dishes dishes
+     */
     @Override
     public void saveOrUpdate(Dishes dishes) {
         dishesRepository.save(dishes);
@@ -83,6 +122,10 @@ public class DishesServicelmpl implements DishesService {
         });
     }
 
+    /**
+     * Delete dishes by dishes' id.
+     * @param id dishes id
+     */
     @Override
     public void saveOrUpdateFavoriteList(UserFavoriteDishes useDishIdPair) {
         usersFavoriteDishesRepository.save(useDishIdPair);

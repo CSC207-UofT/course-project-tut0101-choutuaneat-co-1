@@ -2,7 +2,7 @@ package ChouTuanEat.controller;
 
 import ChouTuanEat.entity.Dishes;
 import ChouTuanEat.entity.UserFavoriteDishes;
-import ChouTuanEat.service.DishesService;
+import ChouTuanEat.usecase.DishesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

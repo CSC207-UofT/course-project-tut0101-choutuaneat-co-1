@@ -1,5 +1,4 @@
-package ChouTuanEat.service.Impl;
-
+package ChouTuanEat.usecase.Impl;
 
 import ChouTuanEat.entity.User;
 import ChouTuanEat.repository.*;

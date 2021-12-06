@@ -1,4 +1,4 @@
-package ChouTuanEat.service;
+package ChouTuanEat.usecase;
 import ChouTuanEat.entity.Dishes;
 import ChouTuanEat.entity.UserFavoriteDishes;
 
@@ -6,6 +6,12 @@ import java.util.List;
 
 public interface DishesService {
     Long getId();
+
+    String getDishName();
+
+    String getInstructions();
+
+    double getTotalCalories();
 
     Dishes getDishByDishID(Long id);
 
@@ -17,7 +23,7 @@ public interface DishesService {
 
     void assembleDishes(Dishes dish);
 
-    void saveOrUpdate(Dishes dish);
+    void saveOrUpdate(Dishes dishes);
 
     void saveOrUpdateFavoriteList(UserFavoriteDishes useDishIdPair);
 
