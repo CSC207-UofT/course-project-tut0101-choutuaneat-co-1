@@ -42,32 +42,3 @@ public class ViewFavouriteDishController {
     }
 
 }
-
-//
-//    // http://127.0.0.1/favourite/rank?method=xxx
-//    // using json format to send response
-//    @GetMapping("/rank")
-//    public List<Dishes> rank(@RequestParam String method) {
-//        List<Dishes> rankDishes = favouriteService.rank(method);
-//        return rankDishes;
-//    }
-//
-//    // http://127.0.0.1/favourite/rank?method=xxx
-//    // using json format to send response
-//    @GetMapping("/names")
-//    public List<String> names() {
-//        List<String> rankDishes = favouriteService.names();
-//
-//        return rankDishes;
-//    }
-//
-//    // POST http://127.0.0.1/favourite/add
-//    // using json format to send request and response
-//    @PostMapping("/add")
-//    public boolean add(@RequestBody Dishes dishes) {return favouriteService.add(dishes);}
-//
-//    // POST http://127.0.0.1/favourite/remove
-//    // using json format to send request and response
-//    @PostMapping("/remove")
-//    public boolean remove(@RequestBody Dishes dishes) {return favouriteService.remove(dishes);}
-//}
