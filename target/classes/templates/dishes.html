@@ -19,7 +19,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <div class="search-box">
-                <input id="search_name" placeholder="Search for a dish..." onfocus="this.value=''" type="text">
+                <label for="search_name"></label><input id="search_name" placeholder="Search for a dish..." onfocus="this.value=''" type="text">
                 <input type="button" value="search" id="search">
             </div>
             <ul class="nav navbar-nav navbar-right">
@@ -46,11 +46,12 @@
 <!-- Add Dish Form -->
 <div class="add-dish-form">
     <h3>Adding a Dish</h3>
-    <h4>Step 1.</h4><t for="name">Enter dish name: </t><input id="dish-name" placeholder="dish name" type="text"><br>
+    <h4>Step 1.</h4><t for="name">Enter dish name: </t>
+    <label for="dish-name"></label><input id="dish-name" placeholder="dish name" type="text"><br>
     <h4>Step 2.</h4><t for="ingredient_list">Select ingredients and enter amount (in grams)</t><br>
     <label id="ingredient_list"></label><br>
     <h4>Step 3.</h4><t for="instructions">Enter cooking instructions:</t><br>
-    <textarea id="instructions" placeholder="instructions" cols="50" rows="5"></textarea><br><br>
+    <label for="instructions"></label><textarea id="instructions" placeholder="instructions" cols="50" rows="5"></textarea><br><br>
     <input id="add" type="button" value="Add Dish!!">
 <!--    <form th:action="@{/homepage}">-->
 <!--        <input type="submit" value="back to homepage" />-->
@@ -70,7 +71,6 @@
         <tr>
             <td>ID</td>
             <td>Dish Name</td>
-            <td>Total Calories</td>
             <td>Ingredient List</td>
             <td>Instructions</td>
         </tr>
@@ -79,7 +79,7 @@
 
         </tbody>
     </table>
-    <span id="table_info" style="display: none">No Data</span><br>
+    <span id="table_info" style="display: none">Opps, seems you need to add some dish first</span><br>
     <span id="info2"></span>
     <script>
         const items = document.getElementById("item_content");
@@ -99,8 +99,7 @@
                     ingredientListStr += ingredientList[j]["weight"] + "g " + ingredientList[j]["ingredientsName"] + "<br>"
                 }
                 const trElement = document.createElement("tr");
-                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+"</td><td>"+
-                    item["totalCalories"] + "</td><td>" + ingredientListStr + "</td><td>" + item["instructions"] +
+                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+"</td><td>" + ingredientListStr + "</td><td>" + item["instructions"] +
                     "</td>";
                 items.appendChild(trElement);
             }
@@ -126,7 +125,6 @@
             for (let i = 0; i < ingredients.length; i++) {
                 const ingredient = ingredients.item(i);
                 if (ingredient.checked) {
-                    const ingredientName = ingredient.value;
                     const ingredientsId = ingredient.getAttribute("ingredients_id");
                     const weight = ingredient.nextElementSibling.nextElementSibling.value;
                     const calorie = ingredient.getAttribute("calorie");
@@ -150,9 +148,7 @@
             httpRequest.send(JSON.stringify(obj));
             httpRequest.onreadystatechange = function () {
                 if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-                    let json = httpRequest.responseText;
-                    json = JSON.parse(json);
-                    alert( "add successfully, id is " + json['id']);
+                    alert( "add successfully!");
                     refreshAllDishes();
                 }
             }

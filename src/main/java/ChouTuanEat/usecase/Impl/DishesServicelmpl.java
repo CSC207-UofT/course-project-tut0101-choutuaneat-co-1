@@ -3,6 +3,7 @@ package ChouTuanEat.usecase.Impl;
 import ChouTuanEat.entity.Dishes;
 import ChouTuanEat.entity.DishesIngredients;
 import ChouTuanEat.entity.UserFavoriteDishes;
+import ChouTuanEat.repository.UsersFavoriteDishesRepository;
 import ChouTuanEat.usecase.DishesService;
 import ChouTuanEat.repository.DishesIngredientsRepository;
 import ChouTuanEat.repository.DishesRepository;
@@ -29,25 +30,6 @@ public class DishesServicelmpl implements DishesService {
 
     @Autowired
     private UsersFavoriteDishesRepository usersFavoriteDishesRepository;
-    @Override
-    public Long getId() {
-        return null;
-    }
-
-    @Override
-    public String getDishName() {
-        return null;
-    }
-
-    @Override
-    public Long getId() {
-        return null;
-    }
-
-    @Override
-    public double getTotalCalories() {
-        return 0;
-    }
 
     /**
      * Find the corresponding dishes according to the ID of the dishes.
@@ -124,7 +106,7 @@ public class DishesServicelmpl implements DishesService {
 
     /**
      * Delete dishes by dishes' id.
-     * @param id dishes id
+     * @param useDishIdPair dishes id
      */
     @Override
     public void saveOrUpdateFavoriteList(UserFavoriteDishes useDishIdPair) {

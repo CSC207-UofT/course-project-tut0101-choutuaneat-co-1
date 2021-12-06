@@ -27,7 +27,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <div class="search-box">
-                <input id="search_name" placeholder="Search for a dish..." onfocus="this.value=''" type="text">
+                <label for="search_name"></label><input id="search_name" placeholder="Search for a dish..." onfocus="this.value=''" type="text">
                 <input type="button" value="search" id="search">
             </div>
             <ul class="nav navbar-nav navbar-right">
@@ -59,7 +59,6 @@
         <tr>
             <td>ID</td>
             <td>Dish Name</td>
-            <td>Total Calories</td>
             <td>Ingredient List</td>
             <td>Instructions</td>
             <td>Add to favorite</td>
@@ -69,7 +68,7 @@
 
         </tbody>
     </table>
-    <span id="table_info" style="display: none">No Data</span><br>
+    <span id="table_info" style="display: none">Opps, seems you need to add some dishes first</span><br>
     <span id="info2"></span>
     <script>
         const items = document.getElementById("item_content");
@@ -89,8 +88,7 @@
                     ingredientListStr += ingredientList[j]["weight"] + "g " + ingredientList[j]["ingredientsName"] + "<br>"
                 }
                 const trElement = document.createElement("tr");
-                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+"</td><td>"+
-                    item["totalCalories"] + "</td><td>" + ingredientListStr + "</td><td>" + item["instructions"] +
+                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+"</td><td>" + ingredientListStr + "</td><td>" + item["instructions"] +
                     "</td>" +
                     "<td><a href='javascript:void(0)' class = 'addDishToFavorite' dishid = " +  item["id"] + " myid='/favourite/save" + "'>add</a></td>";
                 items.appendChild(trElement);
@@ -150,7 +148,7 @@
             refreshAllDishes();
         }
         let message = "[[${message}]]";
-        if(message != "")
+        if(message !== "")
             alert(message);
     </script>
 </div>

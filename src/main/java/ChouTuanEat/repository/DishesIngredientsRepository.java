@@ -1,5 +1,6 @@
 package ChouTuanEat.repository;
 
+
 import ChouTuanEat.entity.DishesIngredients;
 import ChouTuanEat.entity.DishesIngredientsPrimaryKey;
 import org.springframework.data.jpa.repository.JpaRepository;

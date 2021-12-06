@@ -5,13 +5,6 @@ import ChouTuanEat.entity.UserFavoriteDishes;
 import java.util.List;
 
 public interface DishesService {
-    Long getId();
-
-    String getDishName();
-
-    String getInstructions();
-
-    double getTotalCalories();
 
     Dishes getDishByDishID(Long id);
 

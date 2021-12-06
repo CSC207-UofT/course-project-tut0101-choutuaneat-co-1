@@ -2,7 +2,7 @@ package ChouTuanEat.usecase.Impl;
 
 import ChouTuanEat.entity.User;
 import ChouTuanEat.repository.*;
-import ChouTuanEat.service.UserService;
+import ChouTuanEat.usecase.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
