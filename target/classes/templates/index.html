@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-<!--    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>-->
+    <!--    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>-->
 
     <title>ChouTuan Home</title>
     <script th:src="@{/js/jquery-3.5.1.min.js}"></script>
@@ -27,7 +27,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <div class="search-box">
-                <input id="search_name" placeholder="Search for a dish..." onfocus="this.value=''" type="text">
+                <label for="search_name"></label><input id="search_name" placeholder="Search for a dish..." onfocus="this.value=''" type="text">
                 <input type="button" value="search" id="search">
             </div>
             <ul class="nav navbar-nav navbar-right">
@@ -46,7 +46,8 @@
         <div class="go-to-functions-heading">GO TO...</div><br>
         <div class="go-to-functions-content">
             <a th:href=@{/addDishes}>Add Dishes</a><br>
-            <a th:href=@{/addIngredients}>Add Ingredients</a>
+            <a th:href=@{/addIngredients}>Add Ingredients</a><br>
+            <a th:href=@{/favourite}>View Favorites</a>
         </div>
     </div>
 </div>
@@ -58,17 +59,16 @@
         <tr>
             <td>ID</td>
             <td>Dish Name</td>
-            <td>Total Calories</td>
             <td>Ingredient List</td>
             <td>Instructions</td>
-            <td>Delete</td>
+            <td>Add to favorite</td>
         </tr>
         </thead>
         <tbody id="item_content">
 
         </tbody>
     </table>
-    <span id="table_info" style="display: none">No Data</span><br>
+    <span id="table_info" style="display: none">Opps, seems you need to add some dishes first</span><br>
     <span id="info2"></span>
     <script>
         const items = document.getElementById("item_content");
@@ -88,26 +88,30 @@
                     ingredientListStr += ingredientList[j]["weight"] + "g " + ingredientList[j]["ingredientsName"] + "<br>"
                 }
                 const trElement = document.createElement("tr");
-                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+"</td><td>"+
-                    item["totalCalories"] + "</td><td>" + ingredientListStr + "</td><td>" + item["instructions"] +
-                    "</td><td><a href='javascript:void(0)' myid='/dishes/" + item["id"] + "'>delete</a></td>";
+                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["dishName"]+"</td><td>" + ingredientListStr + "</td><td>" + item["instructions"] +
+                    "</td>" +
+                    "<td><a href='javascript:void(0)' class = 'addDishToFavorite' dishid = " +  item["id"] + " myid='/favourite/save" + "'>add</a></td>";
                 items.appendChild(trElement);
             }
-            const allAElement = document.getElementsByTagName("a");
-            for (let i = 0; i < allAElement.length; i++) {
-                allAElement.item(i).addEventListener("click", function (event) {
+            const allFavoriteElement = document.getElementsByClassName("addDishToFavorite");
+            for (let i = 0; i < allFavoriteElement.length; i++) {
+                allFavoriteElement.item(i).addEventListener("click", function (event) {
                     const target = event.target;
                     const href = target.getAttribute("myid");
                     const xmlHttpRequest = new XMLHttpRequest();
-
-                    xmlHttpRequest.open("DELETE", href, true);
+                    xmlHttpRequest.open("POST", href, true);
+                    xmlHttpRequest.setRequestHeader("Content-type", "application/json");
+                    const obj = {
+                        "usersId": [[${session.userId}]],
+                        "dishesId":target.getAttribute("dishid"),
+                    };
+                    xmlHttpRequest.send(JSON.stringify(obj));
                     xmlHttpRequest.onreadystatechange = function () {
                         if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
-                            document.getElementById("info2").innerText = "delete successfully";
+                            alert("add dish to favorite successfully");
                             refreshAllDishes();
                         }
                     }
-                    xmlHttpRequest.send();
                 })
             }
         }
@@ -142,46 +146,10 @@
          */
         window.onload = function () {
             refreshAllDishes();
-            const httpRequest = new XMLHttpRequest();
-            httpRequest.open("GET", "/ingredients", true);
-            httpRequest.onreadystatechange = function () {
-                if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-                    const items = JSON.parse(httpRequest.responseText);
-                    const ingredientList = document.getElementById("ingredient_list");
-                    if (items.length === 0) {
-                        ingredientList.innerText = "No Ingredients Available";
-                    }else {
-                        ingredientList.innerHTML = "";
-                    }
-                    for (let i = 0; i < items.length; i++) {
-                        const item = items[i];
-                        const ingredient = document.createElement("input");
-                        ingredient.setAttribute("type", "checkbox");
-                        ingredient.setAttribute("name", "ingredients");
-                        ingredient.setAttribute("id", "ingredients" + item["id"])
-                        ingredient.setAttribute("value", item["ingredientsName"]);
-                        ingredient.setAttribute("calorie", item["caloriesPerGram"]);
-                        ingredient.setAttribute("ingredients_id", item["id"]);
-
-                        const label = document.createElement("label");
-                        label.setAttribute("for", "ingredients" + items["id"]);
-                        label.innerText = item["ingredientsName"];
-
-                        const weight = document.createElement("input");
-                        weight.setAttribute("type", "number");
-                        weight.setAttribute("placeholder", "gram");
-                        weight.setAttribute("name", "ingredient");
-
-                        const br = document.createElement("br");
-                        ingredientList.appendChild(ingredient);
-                        ingredientList.appendChild(label);
-                        ingredientList.appendChild(weight);
-                        ingredientList.appendChild(br);
-                    }
-                }
-            };
-            httpRequest.send();
         }
+        let message = "[[${message}]]";
+        if(message !== "")
+            alert(message);
     </script>
 </div>
 

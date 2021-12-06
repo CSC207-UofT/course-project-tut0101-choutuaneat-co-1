@@ -10,8 +10,6 @@ public interface UserService {
 
     void saveOrUpdate(User user);
 
-    void deleteByUsername(Long id);
-
     boolean checkName(String name);
 
     boolean checkPassword(String password);

@@ -63,8 +63,11 @@
         <button type="submit" class="btn btn-primary" style="margin-top: 10px; float:right">Submit</button>
     </div>
 </form>
-<div>
-    <p th:text="${message}"></p>
-</div>
+<script>
+    let message = "[[${message}]]";
+    if(message != "")
+        alert(message);
+</script>
+
 </body>
 </html>

@@ -1,55 +1,44 @@
 package ChouTuanEat.controller;
 
 import ChouTuanEat.entity.Dishes;
-//import ChouTuanEat.entity.User;
-import ChouTuanEat.entity.favourites;
-import ChouTuanEat.usecase.favouriteService;
-//import ChouTuanEat.service.UserService;
+import ChouTuanEat.entity.UserFavoriteDishes;
+import ChouTuanEat.usecase.DishesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-
-//import java.util.ArrayList;
 import java.util.List;
-//import java.util.stream.Collectors;
+
 
 @Controller
 @RequestMapping("/favourite")
 public class ViewFavouriteDishController {
 
-    private favouriteService FavouriteService;
-
     @Autowired
-    public void setFavouriteService(favouriteService FavouriteService) {this.FavouriteService = FavouriteService;}
+    private DishesService dishesService;
 
-    @GetMapping("/my_favourites")
-    @ResponseBody
-    public favourites get_List_By_User_Id(@RequestParam Long id){
-        favourites favourite_items = FavouriteService.getListByUserId(id);
-        return favourite_items;
+    @GetMapping()
+    public String getSearchDishPage() {
+        return "favorites";
     }
 
     @PostMapping("/save")
-    public String save_Or_Update(@RequestBody favourites favourite){
-        FavouriteService.saveOrUpdate(favourite);
+    @ResponseBody
+    public String saveOrUpdate(@RequestBody UserFavoriteDishes useDishIdPair){
+        dishesService.saveOrUpdateFavoriteList(useDishIdPair);
         return "updated";
     }
 
-    @GetMapping("/list")
+    @GetMapping("/list/{uid}")
     @ResponseBody
-    public List<Dishes> get_Favourite_List(@RequestParam Long user_Id){
-        favourites favourite = FavouriteService.getListByUserId(user_Id);
-        List<Dishes> favourite_list = FavouriteService.getFavouriteList(favourite);
-        return favourite_list;
+    public List<Dishes> getFavouriteList(@PathVariable(value = "uid") Long user_Id){
+        return dishesService.getFavorListByUserId(user_Id);
     }
 
-    @GetMapping("/rank")
+
     @ResponseBody
-    public Dishes[] get_Sorted_Favourite_List(@RequestParam Long user_Id, @RequestParam String method){
-        favourites favourite = FavouriteService.getListByUserId(user_Id);
-        Dishes[] wanted_dishes = FavouriteService.getSortedFavouriteList(favourite, method);
-        return wanted_dishes;
+    @DeleteMapping("/list")
+    public void deleteDishesFromFavorList(@RequestBody UserFavoriteDishes useDishIdPair) {
+        dishesService.deleteDishesFromFavor(useDishIdPair);
     }
 
 }

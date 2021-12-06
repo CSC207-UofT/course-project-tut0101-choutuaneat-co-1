@@ -43,9 +43,8 @@
 <div class="add-ingred-form">
     <h3>Adding an Ingredient</h3>
     <h4>Step 1.</h4><t for="ingredient_name">Enter ingredient name: </t>
-    <input id="ingredient_name" type="text" placeholder="ingredient name"><br>
-    <h4>Step 2.</h4><t for="calories_per_gram">Enter calories per gram: </t>
-    <input id="calories_per_gram" type="number" placeholder="kcal/g"><br><br>
+    <label for="ingredient_name"></label><input id="ingredient_name" type="text" placeholder="ingredient name"><br>
+    <br>
     <input type="button" value="Add Ingredient!!" id="add"><br>
 </div>
 
@@ -60,15 +59,13 @@
         <tr>
             <td>ID</td>
             <td>Ingredient Name</td>
-            <td>Calories Per Gram</td>
-            <td>Delete</td>
         </tr>
         </thead>
         <tbody id="item_content">
 
         </tbody>
     </table>
-    <span id="table_info" style="display: none">No Data</span><br>
+    <span id="table_info" style="display: none">Opps, seems you need to add some ingredients first</span><br>
     <span id="info2"></span>
     <script>
         const items = document.getElementById("item_content");
@@ -85,26 +82,8 @@
             for (let i = 0; i < list.length; i++) {
                 const item = list[i];
                 const trElement = document.createElement("tr");
-                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["ingredientsName"]+"</td><td>"+
-                    item["caloriesPerGram"]+"</td><td><a href='javascript:void(0)' myid='/ingredients/"+item["id"]+"'>delete</a></td>";
+                trElement.innerHTML = "<td>" + item["id"] + "</td><td>"+item["ingredientsName"]+"</td>";
                 items.appendChild(trElement);
-            }
-            const allAElement = document.getElementsByTagName("a");
-            for (let i = 0; i < allAElement.length; i++) {
-                allAElement.item(i).addEventListener("click", function (event) {
-                    const target = event.target;
-                    const href = target.getAttribute("myid");
-                    const xmlHttpRequest = new XMLHttpRequest();
-
-                    xmlHttpRequest.open("DELETE", href, true);
-                    xmlHttpRequest.onreadystatechange = function () {
-                        if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
-                            document.getElementById("info2").innerText = "delete successfully";
-                            refreshAllData();
-                        }
-                    }
-                    xmlHttpRequest.send();
-                })
             }
         }
 
@@ -122,10 +101,8 @@
 
         document.getElementById("add").addEventListener("click", function () {
             const ingredientName = document.getElementById("ingredient_name").value;
-            const caloriesPerGram = document.getElementById("calories_per_gram").value;
             const obj = {
                 "ingredientsName": ingredientName,
-                "caloriesPerGram": caloriesPerGram,
             };
 
             const httpRequest = new XMLHttpRequest();
@@ -133,8 +110,7 @@
             httpRequest.setRequestHeader("Content-Type", "application/json");
             httpRequest.onreadystatechange = function () {
                 if (httpRequest.readyState === 4 && httpRequest.status === 200) {
-                    const json = JSON.parse(httpRequest.responseText);
-                    document.getElementById("info1").innerText = "add successfully, " + json["ingredientsName"]+" id is " + json["id"];
+                    alert("add successfully");
                     refreshAllData();
                 }
             }

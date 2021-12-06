@@ -2,6 +2,9 @@ package ChouTuanEat.usecase.Impl;
 
 import ChouTuanEat.entity.Dishes;
 import ChouTuanEat.entity.DishesIngredients;
+import ChouTuanEat.entity.UserFavoriteDishes;
+import ChouTuanEat.repository.UsersFavoriteDishesRepository;
+import ChouTuanEat.usecase.DishesService;
 import ChouTuanEat.repository.DishesIngredientsRepository;
 import ChouTuanEat.repository.DishesRepository;
 import ChouTuanEat.repository.IngredientsRepository;
@@ -9,6 +12,7 @@ import ChouTuanEat.usecase.DishesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,25 +28,8 @@ public class DishesServicelmpl implements DishesService {
     @Autowired
     private IngredientsRepository ingredientsRepository;
 
-    @Override
-    public Long getId() {
-        return null;
-    }
-
-    @Override
-    public String getDishName() {
-        return null;
-    }
-
-    @Override
-    public String getInstructions() {
-        return null;
-    }
-
-    @Override
-    public double getTotalCalories() {
-        return 0;
-    }
+    @Autowired
+    private UsersFavoriteDishesRepository usersFavoriteDishesRepository;
 
     /**
      * Find the corresponding dishes according to the ID of the dishes.
@@ -71,6 +58,18 @@ public class DishesServicelmpl implements DishesService {
     @Override
     public List<Dishes> getAllDishes() {
         return dishesRepository.findAll();
+    }
+
+    @Override
+    public List<Dishes> getFavorListByUserId(Long userId) {
+        List<UserFavoriteDishes> userDishesIdPairList =  usersFavoriteDishesRepository.findAllFavoriteDishByUserId(userId);
+        List<Long> dishIds = userDishesIdPairList.stream().map(UserFavoriteDishes::getDishesId).collect(Collectors.toList());
+        List<Dishes> dishesList = new ArrayList<>();
+        for (Long dishId : dishIds) {
+            dishesList.add(getDishByDishID(dishId));
+        }
+        dishesList.forEach(this::assembleDishes);
+        return dishesList;
     }
 
     /**
@@ -107,11 +106,27 @@ public class DishesServicelmpl implements DishesService {
 
     /**
      * Delete dishes by dishes' id.
-     * @param id dishes id
+     * @param useDishIdPair dishes id
      */
+    @Override
+    public void saveOrUpdateFavoriteList(UserFavoriteDishes useDishIdPair) {
+        usersFavoriteDishesRepository.save(useDishIdPair);
+    }
+
     @Override
     public void deleteDishesByID(Long id) {
         dishesRepository.deleteById(id);
         dishesIngredientsRepository.deleteAllByDishesId(id);
+        usersFavoriteDishesRepository.deleteAllByDishesId(id);
+    }
+
+    @Override
+    public void deleteDishesFromFavor(UserFavoriteDishes idPair) {
+        usersFavoriteDishesRepository.delete(idPair);
+    }
+
+    @Override
+    public Object getId() {
+        return null;
     }
 }
